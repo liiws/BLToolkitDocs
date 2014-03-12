@@ -2809,5 +2809,6 @@ InitMapping и EndMapping – инициализация и окончание �
 - Редактор markdown [MarkdownPad](http://markdownpad.com/).
 - Подсветка синтаксиса [http://hilite.me/](http://hilite.me/).
 - Кэш из вебархива ([http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit](http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit)) оригинальной страницы [http://projects.rsdn.ru/RFD/wiki/BLToolkit](http://projects.rsdn.ru/RFD/wiki/BLToolkit).
-- Оригинальная документация [http://files.rsdn.ru/49168/BLToolkit.doc](http://files.rsdn.ru/49168/BLToolkit.doc) 
+- Оригинальная документация [http://files.rsdn.ru/49168/BLToolkit.doc](http://files.rsdn.ru/49168/BLToolkit.doc).
+- Исходник этой статьи на markdown - [http://liiws.bitbucket.org/bltoolkit.md](http://liiws.bitbucket.org/bltoolkit.md).
 
