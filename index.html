@@ -1,0 +1,2732 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>bltoolkit</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+body{
+    margin: 0 auto;
+    font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック', Georgia, Palatino, serif;
+    color: #444444;
+    line-height: 1.2;
+    max-width: 960px;
+    padding: 5px;
+}
+h1, h2, h3, h4 {
+    color: #111111;
+    font-weight: 400;
+}
+h1, h2, h3, h4, h5, p {
+    margin-bottom: 16px;
+    padding: 0;
+}
+h1 {
+    font-size: 28px;
+}
+h2 {
+    font-size: 22px;
+    margin: 20px 0 6px;
+    padding : 12px 0 6px 0;
+    border-top    : 3px double #ddd;
+    border-bottom : 3px double #ddd;
+}
+h3 {
+    font-size: 21px;
+    border-left : 10px solid #ddd;
+    padding-left: 4px;
+    border-bottom : 1px solid #ddd;
+    padding-bottom: 2px;
+    padding-top: 4px;
+}
+h4 {
+    font-size: 18px;
+}
+h5 {
+    font-size: 16px;
+}
+a {
+    color: #0099ff;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+a:hover {
+    text-decoration: none;
+    color: #ff6600;
+}
+a:visited {
+    color: purple;
+}
+ul, ol {
+    padding: 0;
+    margin: 0;
+}
+li {
+    line-height: 24px;
+    margin-left: 44px;
+}
+li ul, li ul {
+    margin-left: 24px;
+}
+p, ul, ol {
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 540px;
+}
+pre {
+    padding: 0px 24px;
+    max-width: 800px;
+    white-space: pre-wrap;
+}
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    line-height: 1.5;
+    font-size: 13px;
+}
+aside {
+    display: block;
+    float: right;
+    width: 390px;
+}
+blockquote {
+    border-left:.5em solid #eee;
+    padding: 0 2em;
+    margin-left:0;
+    max-width: 476px;
+}
+blockquote  cite {
+    font-size:14px;
+    line-height:20px;
+    color:#bfbfbf;
+}
+blockquote cite:before {
+    content: '\2014 \00A0';
+}
+
+blockquote p {  
+    color: #666;
+    max-width: 460px;
+}
+hr {
+    width: 99%;
+    text-align: left;
+    margin: 0 auto 0 0;
+    color: #999;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+button, input {
+  line-height: normal;
+  *overflow: visible;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+input[type=checkbox], input[type=radio] {
+  cursor: pointer;
+}
+/* override default chrome & firefox settings */
+input:not([type="image"]), textarea {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+label,
+input,
+select,
+textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: normal;
+  margin-bottom: 18px;
+}
+input[type=checkbox], input[type=radio] {
+  cursor: pointer;
+  margin-bottom: 0;
+}
+input[type=text],
+input[type=password],
+textarea,
+select {
+  display: inline-block;
+  width: 210px;
+  padding: 4px;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  height: 18px;
+  color: #808080;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+select, input[type=file] {
+  height: 27px;
+  line-height: 27px;
+}
+textarea {
+  height: auto;
+}
+
+/* grey out placeholders */
+:-moz-placeholder {
+  color: #bfbfbf;
+}
+::-webkit-input-placeholder {
+  color: #bfbfbf;
+}
+
+input[type=text],
+input[type=password],
+select,
+textarea {
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+  outline: none;
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+/* buttons */
+button {
+  display: inline-block;
+  padding: 4px 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #0064cd;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+  background-image: linear-gradient(top, #049cdb, #0064cd);
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #004b9a;
+  border-bottom-color: #003f81;
+  -webkit-transition: 0.1s linear all;
+  -moz-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+  border-color: #0064cd #0064cd #003f81;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+button:hover {
+  color: #fff;
+  background-position: 0 -15px;
+  text-decoration: none;
+}
+button:active {
+  -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* CSS stylesheet is based on Kevin Burke's Markdown.css project (http://kevinburke.bitbucket.org/markdowncss) */
+</style>
+</head>
+<body>
+<h1>Business Logic Toolkit</h1>
+<p>Основная задача статьи дать вводную информацию о библиотеке BLToolkit. Она поможет Вам сделать первый шаг в обуздании этого маленького монстра. Данная статья основана на оригинальной статье <a href="http://rsdn.ru/article/files/libs/RsdnFrameworkData.xml">Игоря Ткачева &quot;Пространство имен Rsdn.Framework.Data&quot;</a> и, как следствие, содержит части оной.</p>
+<h2>От <a href="https://bitbucket.org/liiws">liiws</a></h2>
+<p>Настоящая копипаста создана с целью сохранения оригинального текста, т.к. страница на <a href="http://projects.rsdn.ru/RFD/wiki/BLToolkit">RSDN</a> умерла.</p>
+<h2>Оглавление</h2>
+<ul>
+<li>
+Business Logic Toolkit
+<ul>
+<li>
+<a href="#intro">Введение</a>
+<ul>
+<li><a href="#someoracle">Те же и Oracle</a></li>
+</ul>
+</li>
+<li>
+<a href="#why">Зачем все это надо</a>
+<ul>
+<li><a href="#history">Немного истории</a></li>
+<li><a href="#parents">За что боролись отцы и деды</a></li>
+</ul>
+</li>
+<li>
+<a href="#dbmanager">Класс DbManager</a>
+<ul>
+<li><a href="#init">Инициализация и создание экземпляра объекта</a></li>
+<li><a href="#dataprovider">Механизм дата провайдеров</a></li>
+<li><a href="#parameters">Параметры</a></li>
+<li>
+<a href="#executemethods">Методы Execute</a>
+<ul>
+<li><a href="#executedataset">ExecuteDataSet</a></li>
+<li><a href="#executedatatable">ExecuteDataTable и ExecuteDataTables</a></li>
+<li><a href="#executereader">ExecuteReader</a></li>
+<li><a href="#executenonquery">ExecuteNonQuery</a></li>
+<li><a href="#executescalar">ExecuteScalar</a></li>
+<li><a href="#executescalarlist">ExecuteScalarList</a></li>
+<li><a href="#executescalardictionary">ExecuteScalarDictionary</a></li>
+<li><a href="#executeobject">ExecuteObject</a></li>
+<li><a href="#executelist">ExecuteList</a></li>
+<li><a href="#executedictionary">ExecuteDictionary</a></li>
+<li><a href="#executeforeach">ExecuteForEach</a></li>
+<li><a href="#executeresultsets">ExecuteResultSets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#mapping">Отображение данных</a>
+<ul>
+<li><a href="#mappinggeneral">Общие сведения</a></li>
+<li><a href="#mapandschema">Map &amp; MappingSchema</a></li>
+<li>
+<a href="#mappingschema">Семейства функций MappingSchema</a>
+<ul>
+<li><a href="#mappingconvert">Семейства Convert</a></li>
+<li><a href="#mappingmap">Семейства Map</a></li>
+<li><a href="#mappingmapper">MemberMapper</a></li>
+</ul>
+</li>
+<li>
+<a href="#metadata">Метаданные</a>
+<ul>
+<li><a href="#attributes">Атрибуты</a></li>
+<li><a href="#xml">XML</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#dataaccess">DataAccess</a>
+<ul>
+<li><a href="#sqlquery">SqlQuery</a></li>
+<li>
+<a href="#dataaccessor">DataAcessor</a>
+<ul>
+<li><a href="#dataaccessorreturntype">Возвращаемое значение</a></li>
+<li><a href="#dataaccessormethodname">Имя метода</a></li>
+<li><a href="#dataaccessorparams">Параметры</a></li>
+<li><a href="#dataaccessorattributes">Атрибуты</a></li>
+</ul>
+</li>
+<li>
+<a href="#dataaccessrecommends">Рекомендации по использванию</a>
+<ul>
+<li><a href="#dataaccessrecommendsmanual">Реализация методов ручками</a></li>
+<li><a href="#dataaccessrecommendsabstract">Генерация SQL запросов в абстрактном аксессоре</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#materials">При написании использовалось</a></li>
+</ul>
+</li>
+</ul>
+<p><span id="intro"></span></p>
+<h2>Введение</h2>
+<p><em>BLToolkit</em> (ранее известна как <em>Rsdn.Framework.Data</em>) является библиотекой, содержащей набор классов, представляющих собой высокоуровневую обёртку над ADO.NET (вообще, это не совсем правда, содержит она гораздо больше, но исторически BLT создавалась как раз для этих целей). Казалось бы, ADO.NET сама по себе штука достаточно высокоуровневая и зачем над ней ещё городить какой-то огород? Всё это так, но как это часто бывает, в борьбе добра со злом обычно, увы, побеждает лень.</p>
+<p>Рассмотрим в качестве примера функцию, которая возвращает список объектов, содержащих информацию о людях: ID, имя, фамилию, отчество и пол (здесь и далее мы будем использовать базу данных BLToolkit – это тестовая БД к BLT, на данной базе работают блочные тесты, здесь и далее для примеров я постараюсь использовать именно блочные тесты от BLT). Вот как это может выглядеть с использованием ADO.NET:</p>
+<p>Таблица Person имеет следующий вид:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">CREATE</span> <span style="color: #0000ff">TABLE</span> Person
+(
+	PersonID   int          <span style="color: #0000ff">NOT</span> <span style="color: #0000ff">NULL</span> <span style="color: #0000ff">IDENTITY</span>(1,1) <span style="color: #0000ff">CONSTRAINT</span> PK_Person <span style="color: #0000ff">PRIMARY</span> <span style="color: #0000ff">KEY</span> CLUSTERED,
+	FirstName  nvarchar(50) <span style="color: #0000ff">NOT</span> <span style="color: #0000ff">NULL</span>,
+	LastName   nvarchar(50) <span style="color: #0000ff">NOT</span> <span style="color: #0000ff">NULL</span>,
+	MiddleName nvarchar(50)     <span style="color: #0000ff">NULL</span>,
+	Gender     char(1)      <span style="color: #0000ff">NOT</span> <span style="color: #0000ff">NULL</span> <span style="color: #0000ff">CONSTRAINT</span> CK_Person_Gender <span style="color: #0000ff">CHECK</span> (Gender <span style="color: #0000ff">in</span> (<span style="color: #a31515">&#39;M&#39;</span>, <span style="color: #a31515">&#39;F&#39;</span>, <span style="color: #a31515">&#39;U&#39;</span>, <span style="color: #a31515">&#39;O&#39;</span>))
+)
+<span style="color: #0000ff">ON</span> [<span style="color: #0000ff">PRIMARY</span>]
+</pre></div>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">enum</span> Gender
+{
+	Female,
+	Male,
+	Unknown,
+	Other
+}
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Person</span>
+{
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    ID;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> FirstName;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> MiddleName;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> LastName;
+	<span style="color: #0000ff">public</span> Gender Gender;
+}
+
+Person GetPerson(<span style="color: #2b91af">int</span> personId)
+{
+    <span style="color: #2b91af">string</span> connectionString =
+        <span style="color: #a31515">&quot;Server=.;Database=BLToolkit;Integrated Security=SSPI&quot;</span>;
+    <span style="color: #2b91af">string</span> commandText = <span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">        SELECT </span>
+<span style="color: #a31515">            p.PersonId,</span>
+<span style="color: #a31515">            p.FirstName,</span>
+<span style="color: #a31515">            p.SecondName,</span>
+<span style="color: #a31515">            p.MiddleName,</span>
+<span style="color: #a31515">            p.Gender</span>
+<span style="color: #a31515">        FROM Person p</span>
+<span style="color: #a31515">        WHERE p.PersonId = @PersonId&quot;</span>;
+
+    <span style="color: #0000ff">using</span> (SqlConnection con = <span style="color: #0000ff">new</span> SqlConnection(connectionString))
+    {
+        con.Open();
+
+        <span style="color: #0000ff">using</span> (SqlCommand cmd = <span style="color: #0000ff">new</span> SqlCommand(commandText, con))
+        {
+            cmd.Parameters.Add(<span style="color: #a31515">&quot;@min&quot;</span>, min);
+
+            <span style="color: #0000ff">using</span> (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                Person p = <span style="color: #0000ff">null</span>;
+
+                <span style="color: #0000ff">if</span> (rd.Read())
+                {
+                    p = <span style="color: #0000ff">new</span> Person();
+
+                    p.ID           = Convert.ToInt32 (rd[<span style="color: #a31515">&quot;PersonId&quot;</span>]);
+                    p.FirstName    = Convert.ToString(rd[<span style="color: #a31515">&quot;FirstName&quot;</span>]);
+                    p.SecondName   = Convert.ToString(rd[<span style="color: #a31515">&quot;SecondName&quot;</span>]);
+                    p.MiddleName   = Convert.ToString(rd[<span style="color: #a31515">&quot;ThirdName&quot;</span>]);
+                    <span style="color: #2b91af">string</span> gender  = Convert.ToString(rd[<span style="color: #a31515">&quot;Gender&quot;</span>]);
+
+                    <span style="color: #0000ff">switch</span>(gender)
+                    {
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;M&quot;</span>:
+                            p.Gender = Gender.Male;
+                            <span style="color: #0000ff">break</span>;
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;F&quot;</span>:
+                            p.Gender = Gender.Female;
+                            <span style="color: #0000ff">break</span>;
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;U&quot;</span>:
+                            p.Gender = Gender.Unknown;
+                            <span style="color: #0000ff">break</span>;
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;0&quot;</span>:
+                            p.Gender = Gender.Other;
+                            <span style="color: #0000ff">break</span>;
+                    }
+                }
+                <span style="color: #0000ff">return</span> p;
+            }
+        }
+    }
+}
+</pre></div>
+<p>А теперь то же самое, в исполнении BLToolkit:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">enum</span> Gender
+{
+	[MapValue(&quot;F&quot;)] Female,
+	[MapValue(&quot;M&quot;)] Male,
+	[MapValue(&quot;U&quot;)] Unknown,
+	[MapValue(&quot;O&quot;)] Other
+}
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Person</span>
+{
+	[MapField(&quot;PersonID&quot;)]
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    ID;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> FirstName;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> MiddleName;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> LastName;
+	<span style="color: #0000ff">public</span> Gender Gender;
+}
+
+Person GetPerson(<span style="color: #2b91af">int</span> personId)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        <span style="color: #0000ff">return</span> db
+            .SetCommand<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                         SELECT </span>
+<span style="color: #a31515">                             p.PersonId,</span>
+<span style="color: #a31515">                             p.FirstName,</span>
+<span style="color: #a31515">                             p.SecondName,</span>
+<span style="color: #a31515">                             p.MiddleName,</span>
+<span style="color: #a31515">                             p.Gender</span>
+<span style="color: #a31515">                         FROM Person p</span>
+<span style="color: #a31515">                         WHERE p.PersonId = @PersonId&quot;</span>,
+                db.Parameter(<span style="color: #a31515">&quot;@PersonId&quot;</span>, personId)
+            .ExecuteObject(<span style="color: #0000ff">typeof</span>(Person));
+    }
+}
+</pre></div>
+<p><span id="someoracle"></span></p>
+<h3>Те же и Oracle</h3>
+<p>Если вы начинаете тренироваться с BLToolkit на базе Oracle, последний фрагмент кода должен иметь вид: </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">Person GetPerson(<span style="color: #2b91af">int</span> personId)
+{
+   <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+   {
+      <span style="color: #0000ff">return</span> db
+        .SetCommand( <span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">               SELECT </span>
+<span style="color: #a31515">                  p.PersonId,</span>
+<span style="color: #a31515">                  p.FirstName,</span>
+<span style="color: #a31515">                  p.LastName,</span>
+<span style="color: #a31515">                  p.MiddleName,</span>
+<span style="color: #a31515">                  p.Gender</span>
+<span style="color: #a31515">               FROM Person p</span>
+<span style="color: #a31515">               WHERE p.PersonId = :PersonId&quot;</span>,
+           db.Parameter(<span style="color: #a31515">&quot;PersonId&quot;</span>, personId))
+       .ExecuteObject&lt;Person&gt;();
+   }
+}
+...
+   <span style="color: #2b91af">var</span> p = <span style="color: #0000ff">new</span> BLToolkit.Data.DataProvider.OracleDataProvider();
+   p.ParameterPrefix = <span style="color: #0000ff">null</span>;
+   DbManager.AddDataProvider(p);
+   DbManager.AddConnectionString(<span style="color: #a31515">&quot;Oracle&quot;</span>,
+      <span style="color: #2b91af">string</span>.Format(<span style="color: #a31515">&quot;Data Source={0};User ID={1};Password={2};&quot;</span>,
+      oracleAlias, oracleUser, oraclePassword));
+   
+   <span style="color: #2b91af">var</span> person = GetPerson(1);
+</pre></div>
+<p>Не трудно заметить, что последний вариант заметно короче. Фактически все, что у нас осталось – это текст самого запроса. Класс DbManager самостоятельно осуществляет всю работу по созданию объекта и отображению (mapping) полей рекордсета на заданную структуру.</p>
+<p>Вообще, забегая вперед добиться тех же успехов можно и более лаконичным (и техничным) путем:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span>&lt;Person, PersonAccessor&gt;
+{
+    [SqlQuery@&quot;
+               SELECT 
+                   p.PersonId,
+                   p.FirstName,
+                   p.SecondName,
+                   p.MiddleName,
+                   p.Gender
+               FROM Person p
+               WHERE p.PersonId = @PersonId&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Person GetPerson(<span style="color: #2b91af">int</span> personId){}
+}
+
+<span style="color: #008000">//и уже где-то совсем в другом месте программы</span>
+<span style="color: #008000">//получим нужного человека:</span>
+
+Person p = PersonAccessor.CreateInstance().GetPerson (10);
+
+<span style="color: #008000">//...</span>
+</pre></div>
+<p>Но, давайте обо всём по порядку.</p>
+<p><span id="why"></span></p>
+<h2>Зачем всё это надо</h2>
+<p><span id="history"></span></p>
+<h3>Немного истории</h3>
+<p>В конечном итоге все упирается в фундаментальные проблемы: в коде мы имеем дело с классами и объектами, в реляционной БД мы имеем дело с таблицами и их отношениями – с данными.</p>
+<p>Две противоположные и одновременно распространенные модели – объектная и реляционная для совместно использования требуют некоторой прослойки позволяющей производить их взаимное отображение.</p>
+<p>Подробнее с проблемами, возникающими вокруг ORM можно ознакомиться у <a href="http://rsdn.ru/res/book/prog/architect.xml">Мартина Фаулера (&quot;Архитектура корпоративных программных приложений&quot;)</a>.</p>
+<p>BLToolkit является маленькой и шустрой системой, позволяющей отображать данные на объекты, а объекты на данные. Библиотека может стать удобным подспорьем для реализации любого паттерна от “Шлюза таблицы данных (Table Data Gateway)” до “Преобразователя данных (Data Mapper)” (термины приведены в соответствии с г-ном Фаулером).</p>
+<p>Если посмотреть со внешней стороны, то можно выделить следующих ведущих игроков (именно о них мы будем говорить ниже):</p>
+<ul>
+<li>DbManager – класс, предоставляющий высокоуровневую обертку над ADO .NET.</li>
+<li>Map &amp; MappingSchema – первый класс является статическим, и делегирует свои вызовы к экземпляру MappingSchema. MappingSchema, в свою очередь, обеспечивает отображение ежа на ужа, а ужа на слона.</li>
+<li>DataAccessor&lt;T, D&gt; - ода лени. Позволяет отделить мух от котлет – организовать уровень абстракции объектов от данных и способа их извлечения и сохранения.</li>
+<li>Метаданные – мощный и удобный механизм .Net, предоставляющий возможность описать представление объекта в БД, не внося изменений в открытый интерфейс класса.</li>
+</ul>
+<p><span id="parents"></span></p>
+<h3>За что боролись отцы и деды</h3>
+<p>А боролись они за высокую производительность, как программиста, так и BLT. Фактически, большая часть потрохов BLT это генераторы абстрактных классов: библиотека «на лету» эмитит небольшие классы, что позволяет избавить программиста от рутинной работы с одной стороны, и повысить производительность с другой.</p>
+<p>Таким образом, BLT добавляет некоторые издержки на момент первого вызова, связанные с эмитом и кэшированием. Все последующие вызовы являются максимально оптимальными. Издержки же на отображение настолько низки, что ими можно пренебречь (для примера можно посмотреть <a href="http://rsdn.ru/forum/info/FAQ.rfd.rfdprojects">здесь</a>).</p>
+<p><span id="dbmanager"></span></p>
+<h2>Класс DbManager</h2>
+<p><span id="init"></span></p>
+<h3>Инициализация и создание экземпляра объекта</h3>
+<p>Класс DbManager является основным в пространстве имен BLToolkit.Data и в единственном лице представляет собой замену всем основным объектам ADO.NET.</p>
+<p>Для создания экземпляра объекта служит целый набор конструкторов:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> DbManager();
+
+<span style="color: #0000ff">public</span> DbManager(
+    <span style="color: #2b91af">string</span> configurationString
+    );
+
+<span style="color: #0000ff">public</span> DbManager(
+    <span style="color: #2b91af">string</span> providerName, 
+    <span style="color: #2b91af">string</span> configuration
+    );
+
+<span style="color: #0000ff">public</span> DbManager(
+    IDbConnection connection
+    );
+
+<span style="color: #0000ff">public</span> DbManager(
+    IDbTransaction transaction
+    );
+
+<span style="color: #0000ff">public</span> DbManager(
+    DataProviderBase dataProvider, 
+    <span style="color: #2b91af">string</span>           connectionString
+    );
+
+<span style="color: #0000ff">public</span> DbManager(
+    DataProviderBase dataProvider, 
+    IDbConnection    connection
+    );
+
+<span style="color: #0000ff">public</span> DbManager(
+    DataProviderBase dataProvider, 
+    IDbTransaction   transaction
+    );
+</pre></div>
+<p>Остановимся подробней на следующих параметрах (прочие параметры не должны вызвать вопросов у тех, кто хотя бы поверхностно знаком с ADO .NET):</p>
+<ul>
+<li><em>configurationString</em> – это не строка соединения (Connecting String), а ключ, по которому строка соединения будет читаться из файла конфигурации.</li>
+<li><em>providerName</em> – так же ключ, является именем дата провайдера, который следует использовать.</li>
+<li><em>dataProvider</em> – экземпляр дата провайдера, который следует использовать. Механизм дата провайдеров достоин отдельного обсуждения, что и будет сделано ниже.</li>
+</ul>
+<p>Рассмотрим подробнее правила работы с файлом конфигурации:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">&lt;appSettings&gt;
+<span style="color: #0000ff">&lt;!—- Конфигурация по умолчанию --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString&quot;</span>
+		value = <span style="color: #a31515">&quot;Server=.;Database=BLToolkitData;Integrated Security=SSPI&quot;</span>/&gt;
+<span style="color: #0000ff">&lt;!—- Конфигурация Development для SQL Server --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString.Development&quot;</span>
+		value = <span style="color: #a31515">&quot;Server=.;Database=BLToolkitData;Integrated Security=SSPI&quot;</span>/&gt;
+<span style="color: #008000">&lt;!-- Конфигурация Production для SQL Server --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString.Production&quot;</span>
+		value = <span style="color: #a31515">&quot;Server=.;Database=BLToolkitData;Integrated Security=SSPI&quot;</span>/&gt;
+<span style="color: #008000">&lt;!-- Конфигурация для SQL Server --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString.Sql&quot;</span>
+		value = <span style="color: #a31515">&quot;Server=.;Database=BLToolkitData;Integrated Security=SSPI&quot;</span>/&gt;
+<span style="color: #008000">&lt;!-- Конфигурация для Oracle --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString.Oracle&quot;</span>
+		value = <span style="color: #a31515">&quot;User Id=/;Data Source=BLToolkitData&quot;</span>/&gt;
+<span style="color: #008000">&lt;!-- Конфигурация OLEDB --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString.OleDb&quot;</span>
+		value = <span style="color: #a31515">&quot;Provider=SQLNCLI.1;Data Source=.;Integrated Security=SSPI;Initial Catalog=BLToolkitData&quot;</span>/&gt;
+<span style="color: #008000">&lt;!-- Конфигурация Development для OLEDB --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString.OleDb.Development&quot;</span>
+		value = <span style="color: #a31515">&quot;Provider=SQLNCLI.1;Data Source=.;Integrated Security=SSPI;Initial Catalog=BLToolkitData&quot;</span>/&gt;
+<span style="color: #008000">&lt;!-- Конфигурация Production для OLEDB --&gt;</span>
+&lt;add
+		key   = <span style="color: #a31515">&quot;ConnectionString.OleDb.Production&quot;</span>
+		value = <span style="color: #a31515">&quot;Provider=SQLNCLI.1;Data Source=.;Integrated Security=SSPI;Initial Catalog=BLToolkitData&quot;</span>/&gt;
+&lt;/appSettings&gt;
+</pre></div>
+<p>Как видим, поле key – содержит ключевое значение ConntctionString и разделенные c ним через точку <em>configurationString</em> и <em>providerName</em>.</p>
+<p>Рассмотрим следующие примеры создания DbManager:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000">// Использование конфигурации по умолчанию.</span>
+DbManager db = <span style="color: #0000ff">new</span> DbManager();
+
+<span style="color: #008000">// Использование конфигурации для Sql Server</span>
+<span style="color: #008000">// аналогично для Oracle DbManager (&quot;Oracle&quot;)</span>
+DbManager db = <span style="color: #0000ff">new</span> DbManager(<span style="color: #a31515">&quot;Sql&quot;</span>);
+
+<span style="color: #008000">// Использование конфигурации Development для Sql Server</span>
+<span style="color: #008000">// аналогично Production для OLEDB DbManager (&quot;OleDb&quot; &amp; &quot;Production&quot;)</span>
+DbManager db = <span style="color: #0000ff">new</span> DbManager(<span style="color: #a31515">&quot;Sql&quot;</span>, <span style="color: #a31515">&quot;Development&quot;</span>);
+</pre></div>
+<p>Дополнительно есть возможность указать конфигурацию по умолчанию. Если в файл конфигурации добавить вот такую секцию:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">&lt;appSettings&gt;
+    &lt;add
+        key   = <span style="color: #a31515">&quot;BLToolkit.DefaultConfiguration&quot;</span>
+        value = <span style="color: #a31515">&quot;Oracle&quot;</span>/&gt;
+&lt;/appSettings&gt;
+</pre></div>
+<p>То вызов конструктора без параметров будет аналогичен вызову DbManager(“Oracle”). </p>
+<p>Таким образом мы можем работать с различными конфигурациями и базами данных. Секция <em>appSettings</em> может находиться как в <em>app.config</em> или <em>web.config</em> так и <em>machine.config</em> файле.</p>
+<p>Если же вам не хочется возиться с конфигурационными файлами, то для задания строки соединения можно воспользоваться методом AddConnectionString:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">DbManager.AddConnectionString(<span style="color: #a31515">&quot;MyConfig&quot;</span>, connectionString);
+
+<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager(<span style="color: #a31515">&quot;MyConfig&quot;</span>))
+{
+    <span style="color: #008000">// ...</span>
+}
+</pre></div>
+<p>или</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">DbManager.AddConnectionString(connectionString);
+
+<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+{
+    <span style="color: #008000">// ...</span>
+}
+</pre></div>
+<p>Метод AddConnectionString достаточно вызвать один раз для каждой конфигурации в начале программы.</p>
+<p><span id="dataprovider"></span></p>
+<h3>Механизм дата провайдеров</h3>
+<p>Отличительной особенностью класса DbManager является то, что он работает исключительно с интерфейсами пространства имён System.Data и вполне может использоваться для работы с различными провайдерами данных. На данный момент поддерживается работа с Data Provider for SQL Server, Data Provider for Oracle, Data Provider for OLE DB и Data Provider for ODBC. Выбор провайдера осуществляется также с помощью строки конфигурации. Для этого достаточно добавить к ней один из следующих постфиксов: “.OleDb”, “.Odbc”, “.Oracle”, “.Sql”. Если постфикс не задан, то по умолчанию выбирается провайдер для SQL Server.</p>
+<p>К вопросам о мифичности и реальности поддержки в одном проекте различных баз данных. Исходный код BLToolkit покрыт блочными тестами. При этом есть возможность в качестве тестовой базы данных использовать: MS Sql Server, Access, Oracle (используется OdpDataProvider .\Source\Data\DataProvider\OdpDataProvider.cs), Firebird (используется FdpDataProvider .\Source\Data\DataProvider\FdpDataProvider.cs). Так же примером может служить проект <a href="http://rsdn.ru/projects/janus/article/article.xml">RSDN@HOME</a>, где механизмами BLT осуществлена поддержка нескольких БД.</p>
+<p>Таким образом, механизм дата провайдеров позволяет абстрагировать DbManager от специфики конкретного клиента и его реализации. Для примера можно рассмотреть OdpDataProvider.</p>
+<p>В дополнение к существующим провайдерам совсем несложно подключить любой другой. Следующий пример демонстрирует подключение Borland Data Providers for .NET (BDP.NET):</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">using</span> System;
+<span style="color: #0000ff">using</span> System.Data;
+<span style="color: #0000ff">using</span> System.Data.Common;
+
+<span style="color: #0000ff">using</span> Borland.Data.Provider;
+
+<span style="color: #0000ff">using</span> Rsdn.Framework.Data;
+<span style="color: #0000ff">using</span> Rsdn.Framework.Data.DataProvider;
+
+<span style="color: #0000ff">namespace</span> Example
+{
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">BdpDataProvider</span>: IDataProvider
+    {
+        IDbConnection IDataProvider.CreateConnectionObject()
+        {
+            <span style="color: #0000ff">return</span> <span style="color: #0000ff">new</span> BdpConnection();
+        }
+
+        DbDataAdapter IDataProvider.CreateDataAdapterObject()
+        {
+            <span style="color: #0000ff">return</span> <span style="color: #0000ff">new</span> BdpDataAdapter();
+        }
+
+        <span style="color: #0000ff">void</span> IDataProvider.DeriveParameters(IDbCommand command)
+        {
+            BdpCommandBuilder.DeriveParameters((BdpCommand)command);
+        }
+
+        Type IDataProvider.ConnectionType
+        {
+            <span style="color: #0000ff">get</span>
+            {
+                <span style="color: #0000ff">return</span> typeof(BdpConnection);
+            }
+        }
+
+        <span style="color: #2b91af">string</span> IDataProvider.Name
+        {
+            <span style="color: #0000ff">get</span>
+            {
+                <span style="color: #0000ff">return</span> <span style="color: #a31515">&quot;Bdp&quot;</span>;
+            }
+        }
+    }
+
+    <span style="color: #0000ff">class</span> <span style="color: #2b91af">Test</span>
+    {
+        <span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span> Main()
+        {
+            DbManager.AddDataProvider(<span style="color: #0000ff">new</span> BdpDataProvider());
+            DbManager.AddConnectionString(<span style="color: #a31515">&quot;.bdp&quot;</span>,
+                <span style="color: #a31515">&quot;assembly=Borland.Data.Mssql,Version=1.1.0.0, &quot;</span> +
+                <span style="color: #a31515">&quot;Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b;&quot;</span> +
+                <span style="color: #a31515">&quot;vendorclient=sqloledb.dll;osauthentication=True;&quot;</span> +
+                <span style="color: #a31515">&quot;database=Northwind;hostname=localhost;provider=MSSQL&quot;</span>);
+
+            <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+            {
+                <span style="color: #2b91af">int</span> count = (<span style="color: #2b91af">int</span>)db
+                    .SetCommand(<span style="color: #a31515">&quot;SELECT Count(*) FROM Categories&quot;</span>)
+                    .ExecuteScalar();
+
+                Console.WriteLine(count);
+            }
+        }
+    }
+}
+</pre></div>
+<p><span id="parameters"></span></p>
+<h3>Параметры</h3>
+<p>Большинство используемых запросов требуют тот или иной набор параметров для своего выполнения. В приведённом выше примере таким параметром является @personId – идентификатор человека в базе. Зачастую, среднеленивый программист предпочитает использовать в подобных случаях обычную конкатенацию строк, т.е. что-то наподобие следующего:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">void</span> Test(<span style="color: #2b91af">int</span> id)
+{
+    <span style="color: #2b91af">string</span> commandText = <span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">        SELECT FirstName</span>
+<span style="color: #a31515">        FROM   Person</span>
+<span style="color: #a31515">        WHERE  PersonId = &quot;</span> + id;
+
+    <span style="color: #008000">// ...</span>
+}
+</pre></div>
+<p>К сожалению, при всей своей простоте, такой стиль плохо читаем, часто ведёт к непредсказуемым ошибкам и долгим мучениям с подбором формата, если в качестве параметра, например, используется дата. Более того, если наш параметр имеет строковый тип, то применение такого подхода в Web-приложениях может сделать их весьма уязвимыми для хакерских атак. Поэтому, отложим шутки в сторону и серьёзно займёмся рассмотрением возможностей, предоставляемых классом DbManager для работы с параметрами.</p>
+<p>Для создания параметров служит следующий набор методов:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter Parameter(
+	<span style="color: #2b91af">string</span> parameterName,
+	<span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>
+);
+
+<span style="color: #0000ff">public</span> IDbDataParameter InputParameter(
+	<span style="color: #2b91af">string</span> parameterName,
+	<span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>
+);
+</pre></div>
+<p>Создаёт входной (<em>ParameterDirection.Input</em>) параметр с именем <em>parameterName</em> и значением <em>value</em>.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter NullParameter(
+    <span style="color: #2b91af">string</span> parameterName,
+    <span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>
+);
+</pre></div>
+<p>Делает тоже, что и предыдущие методы и в дополнение проверяет значение <em>value</em>. Если оно представляет собой <em>null</em>, пустую строку, значение даты <em>DateTime.MinValue</em> или 0 для целых типов, то вместо заданного значения подставляется <em>DBNull.Value</em>.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter OutputParameter(
+    <span style="color: #2b91af">string</span> parameterName,
+    <span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>
+);
+</pre></div>
+<p>Создаёт выходной (<em>ParameterDirection.Output</em>) параметр.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter InputOutputParameter(
+    <span style="color: #2b91af">string</span> parameterName,
+    <span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>
+);
+</pre></div>
+<p>Создаёт параметр, работающий как входной и выходной (<em>ParameterDirection.InputOutput</em>).</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter ReturnValue(
+    <span style="color: #2b91af">string</span> parameterName
+);
+</pre></div>
+<p>Создаёт параметр-возвращаемое значение (<em>ParameterDirection.ReturnValue</em>).</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter Parameter(
+    ParameterDirection parameterDirection,
+    <span style="color: #2b91af">string</span> parameterName,
+    <span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>
+);
+</pre></div>
+<p>Создаёт параметр с заданными значениями.</p>
+<p>Создание выходных параметров и возвращаемое значение используются для работы с сохранёнными процедурами. Входной параметр можно использовать для построения любых запросов.</p>
+<p>Для чтения выходных параметров после выполнения запроса служит следующий метод:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter Parameter(
+    <span style="color: #2b91af">string</span> parameterName
+);
+</pre></div>
+<p>Каждая версия метода Execute… имеет в своём составе метод, принимающий в качестве последнего аргумента список параметров запроса. Например, для ExecuteNonQuery одна из таких функций имеет следующий вид:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteNonQuery(
+    <span style="color: #2b91af">string</span> commandText,
+    <span style="color: #0000ff">params</span> IDbDataParameter[] commandParameters
+);
+</pre></div>
+<p>Таким образом, список параметров задаётся простым перечислением через запятую (с таблицей Region и примерами с ней связанными я отойду от правила использовать БД BLToolkit):</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">void</span> InsertRegion(<span style="color: #2b91af">int</span> id, <span style="color: #2b91af">string</span> description)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        db
+            .SetCommand(<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                INSERT INTO Region (</span>
+<span style="color: #a31515">                    RegionID,</span>
+<span style="color: #a31515">                    RegionDescription</span>
+<span style="color: #a31515">                ) VALUES (</span>
+<span style="color: #a31515">                    @id,</span>
+<span style="color: #a31515">                    @desc</span>
+<span style="color: #a31515">                )&quot;</span>,
+                db.Parameter(<span style="color: #a31515">&quot;@id&quot;</span>,   id),
+                db.Parameter(<span style="color: #a31515">&quot;@desc&quot;</span>, description))
+            .ExecuteNonQuery();
+    }
+}
+</pre></div>
+<p>Для создания списка параметров из бизнес объектов существует метод CreateParameters, который принимает в качестве аргумента объект DataRow или любой бизнес-объект. Допустим, у нас имеется класс Region, содержащий информацию о регионе. В этом случае мы могли бы переписать предыдущий пример следующим образом:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Region</span>
+{
+    <span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    ID;
+    <span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> Description;
+}
+
+<span style="color: #0000ff">void</span> InsertRegion(Region region)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        db
+            .SetCommand(<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                INSERT INTO Region (</span>
+<span style="color: #a31515">                    RegionID,</span>
+<span style="color: #a31515">                    RegionDescription</span>
+<span style="color: #a31515">                ) VALUES (</span>
+<span style="color: #a31515">                    @ID,</span>
+<span style="color: #a31515">                    @Description</span>
+<span style="color: #a31515">                )&quot;</span>,
+                db.CreateParameters(region)).
+            .ExecuteNonQuery();
+    }
+}
+</pre></div>
+<p>Более общий вид функции CreateParameters для бизнес объекта (аналогично для DataRow) выглядит следующим образом:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter[] CreateParameters(
+	<span style="color: #2b91af">object</span>                    obj,
+	<span style="color: #2b91af">string</span>[]                  outputParameters,
+	<span style="color: #2b91af">string</span>[]                  inputOutputParameters,
+	<span style="color: #2b91af">string</span>[]                  ignoreParameters,
+	<span style="color: #0000ff">params</span> IDbDataParameter[] commandParameters);
+</pre></div>
+<p>Подобный вызов позволит явно задать параметрам  по их именам их направления и, при необходимости, указать дополнительные параметры:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Region</span>
+{
+    <span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    ID;
+    <span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> Description;
+}
+
+<span style="color: #0000ff">void</span> InsertRegion(Region region)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        db
+            .SetCommand(<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                INSERT INTO Region (</span>
+<span style="color: #a31515">                    RegionDescription</span>
+<span style="color: #a31515">                ) VALUES (</span>
+<span style="color: #a31515">                    @Description</span>
+<span style="color: #a31515">                )</span>
+<span style="color: #a31515">                SELECT Cast(SCOPE_IDENTITY() as int) ID&quot;</span>,
+                db.CreateParameters(region, <span style="color: #0000ff">new</span> <span style="color: #2b91af">string</span>[]{<span style="color: #a31515">&quot;ID&quot;</span>}, <span style="color: #0000ff">null</span>, <span style="color: #0000ff">null</span>)).
+            .ExecuteObject(region);
+    }
+}
+</pre></div>
+<p>В результате данного вызова объекту <em>region</em> в соответствующее поле будет задано значение <em>ID</em> только что вставленной записи (считаем, что поле <em>ID</em> в таблице <em>Region</em> – автоинкрементное).</p>
+<p>Для передачи параметров сохранённой процедуре можно воспользоваться ещё одним способом, не требующим явного указания имён параметров:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">DataSet SelectByName(<span style="color: #2b91af">string</span> firstName, <span style="color: #2b91af">string</span> lastName)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        <span style="color: #0000ff">return</span> db
+            .SetSpCommand(<span style="color: #a31515">&quot;Person_SelectListByName&quot;</span>, firstName, lastName)
+            .ExecuteDataSet();
+    }
+}
+</pre></div>
+<p>В данном случае важен лишь порядок следования аргументов процедуры. Данная функция самостоятельно строит список параметров исходя из списка параметров сохранённой процедуры.</p>
+<p>Для анализа возвращаемого значения и выходных параметров можно воспользоваться следующим методом:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDbDataParameter Parameter(
+    <span style="color: #2b91af">string</span> parameterName
+);
+</pre></div>
+<p>Например, в приведённом выше примере возвращаемое значение сохранённой процедуры можно (ну тут я слукавил – Person_SelectByName не возвращает такого значения, но если бы возвращала, то было бы можно) проверить следующим образом:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">DataSet SelectByName(<span style="color: #2b91af">string</span> firstName, <span style="color: #2b91af">string</span> lastName)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        DataSet dataSet = db
+            .SetSpCommand(<span style="color: #a31515">&quot;Person_SelectListByName&quot;</span>, firstName, lastName)
+            .ExecuteDataSet();
+
+        <span style="color: #2b91af">int</span> returnValue = (<span style="color: #2b91af">int</span>)db.Parameter(<span style="color: #a31515">&quot;@RETURN_VALUE&quot;</span>).Value;
+
+        <span style="color: #0000ff">if</span> (returnValue != 0)
+        {
+            <span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span> Exception(
+                <span style="color: #2b91af">string</span>.Format(<span style="color: #a31515">&quot;Return value is &#39;{0}&#39;&quot;</span>, returnValue));
+        }
+
+        <span style="color: #0000ff">return</span> dataSet;
+    }
+}
+</pre></div>
+<p>Последней возможностью работы с параметрами, которую нам осталось рассмотреть, является использование функции подготовки запроса Prepare, которая может быть полезной при выполнении одного и того же запроса несколько раз. Фактически в данном случае вызов метода Execute… разбивается на две части: первая - вызов Prepare с заданием типа, текста и параметров запроса, вторая - вызов соответствующего метода Execute… для выполнения запроса определённое число раз. Следующий пример демонстрирует данную возможность.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">void</span> InsertRegionList(Region[] regionList)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        db
+            .SetCommand (<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                INSERT INTO Region (</span>
+<span style="color: #a31515">                    RegionID,</span>
+<span style="color: #a31515">                    RegionDescription</span>
+<span style="color: #a31515">                ) VALUES (</span>
+<span style="color: #a31515">                    @ID,</span>
+<span style="color: #a31515">                    @Description</span>
+<span style="color: #a31515">                )&quot;</span>,
+                db.Parameter(<span style="color: #a31515">&quot;@ID&quot;</span>,          regionList[0].ID),
+                db.Parameter(<span style="color: #a31515">&quot;@Description&quot;</span>, regionList[0].Description))
+            .Prepare();
+
+        <span style="color: #0000ff">foreach</span> (Region r <span style="color: #0000ff">in</span> regionList)
+        {
+            db.Parameter(<span style="color: #a31515">&quot;@ID&quot;</span>).Value          = r.ID;
+            db.Parameter(<span style="color: #a31515">&quot;@Description&quot;</span>).Value = r.Description;
+
+            db.ExecuteNonQuery();
+        }
+    }
+}
+</pre></div>
+<p>Либо мы можем упростить его следующим образом для бизнес объектов...</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">void</span> InsertRegionList(Region[] regionList)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        db
+            .SetCommand(<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                INSERT INTO Region (</span>
+<span style="color: #a31515">                    RegionID,</span>
+<span style="color: #a31515">                    RegionDescription</span>
+<span style="color: #a31515">                ) VALUES (</span>
+<span style="color: #a31515">                    @ID,</span>
+<span style="color: #a31515">                    @Description</span>
+<span style="color: #a31515">                )&quot;</span>,
+                db.CreateParameters(regionList[0]))
+            .Prepare();
+
+        <span style="color: #0000ff">foreach</span> (Region r <span style="color: #0000ff">in</span> regionList)
+        {
+            db.AssignParameterValues(r);
+            db.ExecuteNonQuery();
+        }
+    }
+}
+</pre></div>
+<p>и класса DataRow</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span> InsertRegionTable(DataTable dataTable)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        db
+            .SetCommand(<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                INSERT INTO Region (</span>
+<span style="color: #a31515">                    RegionID,</span>
+<span style="color: #a31515">                    RegionDescription</span>
+<span style="color: #a31515">                ) VALUES (</span>
+<span style="color: #a31515">                    @ID,</span>
+<span style="color: #a31515">                    @Description</span>
+<span style="color: #a31515">                )&quot;</span>,
+                db.CreateParameters(dataTable.Rows[0]))
+            .Prepare();
+
+        <span style="color: #0000ff">foreach</span> (DataRow dr <span style="color: #0000ff">in</span> dataTable.Rows)
+            db.AssignParameterValues(dr).ExecuteNonQuery();
+    }
+}
+</pre></div>
+<p>Конечно, для совсем ленивых есть вот такой вариант (метод ExecuteForEach использует именно описанный выше механизм):</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">void</span> InsertRegionList(Region[] regionList)
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        db
+            .SetCommand(<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                INSERT INTO Region (</span>
+<span style="color: #a31515">                    RegionID,</span>
+<span style="color: #a31515">                    RegionDescription</span>
+<span style="color: #a31515">                ) VALUES (</span>
+<span style="color: #a31515">                    @ID,</span>
+<span style="color: #a31515">                    @Description</span>
+<span style="color: #a31515">                )&quot;</span>)
+            .ExecuteForEach(regionList);
+    }
+}
+</pre></div>
+<p><span id="executemethods"></span></p>
+<h3>Методы Execute</h3>
+<p>Класс <em>DbManager</em> содержит целый набор семейств методов Execute. Каждое семейство отличается типом возвращаемой сущности, это может быть как <em>DataSet</em>, бизнес объект, коллекция бизнес объектов и так далее. Ниже мы рассмотрим все семейства Execute.</p>
+<p><span id="executedataset"></span></p>
+<h4>ExecuteDataSet</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> DataSet ExecuteDataSet();
+
+<span style="color: #0000ff">public</span> DataSet ExecuteDataSet(DataSet dataSet);
+
+<span style="color: #0000ff">public</span> DataSet ExecuteDataSet(NameOrIndexParameter table);
+
+<span style="color: #0000ff">public</span> DataSet ExecuteDataSet(
+    DataSet              dataSet,
+    NameOrIndexParameter table);
+
+<span style="color: #0000ff">public</span> DataSet ExecuteDataSet(
+    DataSet              dataSet,
+    <span style="color: #2b91af">int</span>                  startRecord,
+    <span style="color: #2b91af">int</span>                  maxRecords,
+    NameOrIndexParameter table);
+</pre></div>
+<p>Как видно из названия метода результатом данного выражения является объект класса <em>DataSet</em> (подобное семантическое правило сохраняется для всех семейств).</p>
+<p>Рассмотрим подробнее параметры методов:</p>
+<ul>
+<li><em>dataSet</em> – результирующий датасет (он будет заполнен и возвращен). Если <em>null</em>, то будет создан новый экземпляр датасета. Подобный подход импользуется так же в других методах семейств Execute.</li>
+<li><em>table</em> – имя или номер таблицы для заполнения в результирующем датасете. Отдельный интерес представляет класс <em>NameOrIndexParameter</em>, для ознакомления с технологией работы лучше прочитать статью: <a href="http://rsdn.ru/forum/prj.rfd/1940433.1">Унифицированная система передачи строковых/числовых параметров</a>. </li>
+<li><em>startRecord</em> – номер записи с которой начинать заполнение (считается с нуля).</li>
+<li><em>maxRecords</em> – максимальное число записей для заполнения.</li>
+</ul>
+<p>Отдельно отмечу, что библиотека писалась как «самодокументируемая», поэтому в большинстве случаев используются схожие приемы и сохраняются имена для параметров с одинаковым смыслом. Поэтому ниже мы не будем рассматривать повторно то, что уже было рассмотрено ранее.</p>
+<p><span id="executedatatable"></span></p>
+<h4>ExecuteDataTable и ExecuteDataTables</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> DataTable ExecuteDataTable();
+
+<span style="color: #0000ff">public</span> DataTable ExecuteDataTable(DataTable dataTable);
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> ExecuteDataTables(
+    <span style="color: #2b91af">int</span>    startRecord,
+    <span style="color: #2b91af">int</span>    maxRecords,
+    <span style="color: #0000ff">params</span> DataTable[] tableList);
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> ExecuteDataTables(<span style="color: #0000ff">params</span> DataTable[] tableList);
+</pre></div>
+<p>Как видим, в данном семействе есть два вида методов: <em>ExecuteDataTable</em> – заполняет одну таблицу, <em>ExecuteDataTables</em> – заполняет массив таблиц, заданный параметром <em>tableList</em>.</p>
+<p><span id="executereader"></span></p>
+<h4>ExecuteReader</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDataReader ExecuteReader();
+
+<span style="color: #0000ff">public</span> IDataReader ExecuteReader(CommandBehavior commandBehavior)
+</pre></div>
+<p>Возвращает экземпляр <em>IDataReader</em>.</p>
+<p>C <em>commandBehavior</em> подробней можно ознакомиться в <a href="http://msdn.microsoft.com/en-us/library/system.data.commandbehavior(VS.85).aspx">MSDN</a>.</p>
+<p><span id="executenonquery"></span></p>
+<h4>ExecuteNonQuery</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteNonQuery();
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteNonQuery(
+    <span style="color: #2b91af">string</span> returnValueMember,
+    <span style="color: #2b91af">object</span> obj);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteNonQuery(<span style="color: #2b91af">object</span> obj);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteNonQuery(
+    <span style="color: #2b91af">string</span>          returnValueMember,
+    <span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] objects);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteNonQuery(<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] objects);
+</pre></div>
+<p>Данное семейство используется для выполнения <em>UPDATE</em>, <em>INSERT</em> и <em>DELETE</em> запросов. Все методы возвращают число записей, обработанных запросом.</p>
+<p>Рассмотрим подробнее параметры методов:</p>
+<ul>
+<li><em>returnValueMember</em> – грубо говоря, это имя поля в объекте, в которое необходимо записать возвращаемое значение. Если же быть точным, то это имя маппера поля (MemberMapper) в которое следует записать возвращаемое значение. Подробнее о мапинге (отображении) мы поговорим ниже.</li>
+<li><em>obj</em> – объект в который будут отображены (записаны) параметры команды.</li>
+<li><em>objects</em> – коллекция объектов в которые будут отображены (записаны) параметры команды.</li>
+</ul>
+<p>Здесь мы впервые столкнулись с проявлениями мапинга (отображения). Ранее мы говорили, что BLT как раз занимается в первую очередь отображением данных из БД на объекте в коде, пришло время рассмотреть первый пример этого отображения.</p>
+<p>Первые участники действа это хранимые процедуры:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000">-- OutRefTest</span>
+<span style="color: #0000ff">CREATE</span> <span style="color: #0000ff">Procedure</span> OutRefTest
+	@ID             int,
+	@outputID       int <span style="color: #0000ff">output</span>,
+	@inputOutputID  int <span style="color: #0000ff">output</span>,
+	@str            varchar(50),
+	@outputStr      varchar(50) <span style="color: #0000ff">output</span>,
+	@inputOutputStr varchar(50) <span style="color: #0000ff">output</span>
+<span style="color: #0000ff">AS</span>
+
+<span style="color: #0000ff">SET</span> @outputID       = @ID
+<span style="color: #0000ff">SET</span> @inputOutputID  = @ID + @inputOutputID
+<span style="color: #0000ff">SET</span> @outputStr      = @str
+<span style="color: #0000ff">SET</span> @inputOutputStr = @str + @inputOutputStr
+
+<span style="color: #008000">-- Scalar_ReturnParameter</span>
+<span style="color: #0000ff">CREATE</span> <span style="color: #0000ff">Function</span> Scalar_ReturnParameter()
+<span style="color: #0000ff">RETURNS</span> int
+<span style="color: #0000ff">AS</span>
+<span style="color: #0000ff">BEGIN</span>
+	<span style="color: #0000ff">RETURN</span> 12345
+<span style="color: #0000ff">END</span>
+</pre></div>
+<p>И собственно тесты:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">ReturnParameter</span>
+{
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> Value;
+}
+
+[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> MapReturnValue()
+{
+	ReturnParameter e = <span style="color: #0000ff">new</span> ReturnParameter();
+	<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+	{
+		db
+			.SetSpCommand(<span style="color: #a31515">&quot;Scalar_ReturnParameter&quot;</span>)
+			.ExecuteNonQuery(<span style="color: #a31515">&quot;Value&quot;</span>, e);
+	}
+
+	Assert.AreEqual(12345, e.Value);
+}
+</pre></div>
+<p>Как видим в данном тесте BLT успешно отображает возвращаемое функцией <em>Scalar_ReturnParameter</em> значение на поле <em>Value</em> объекта класса <em>ReturnParameter</em>.</p>
+<p>Рассмотрим еще два теста:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">OutRefTest</span>
+{
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    ID             = 5;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    outputID;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    inputOutputID  = 10;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> str            = <span style="color: #a31515">&quot;5&quot;</span>;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> outputStr;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> inputOutputStr = <span style="color: #a31515">&quot;10&quot;</span>;
+}
+
+[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> MapOutput()
+{
+	OutRefTest o = <span style="color: #0000ff">new</span> OutRefTest();
+
+	<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+	{
+		db
+			.SetSpCommand(<span style="color: #a31515">&quot;OutRefTest&quot;</span>, db.CreateParameters(o,
+				<span style="color: #0000ff">new</span> <span style="color: #2b91af">string</span>[] {      <span style="color: #a31515">&quot;outputID&quot;</span>,      Str<span style="color: #a31515">&quot; },</span>
+				<span style="color: #0000ff">new</span> <span style="color: #2b91af">string</span>[] { <span style="color: #a31515">&quot;inputOutputID&quot;</span>, utputStr<span style="color: #a31515">&quot; },</span>
+				<span style="color: #0000ff">null</span>))
+			.ExecuteNonQuery(o);
+	}
+
+	Assert.AreEqual(5,     o.outputID);
+	Assert.AreEqual(15,    o.inputOutputID);
+	Assert.AreEqual(<span style="color: #a31515">&quot;5&quot;</span>,   o.outputStr);
+	Assert.AreEqual(<span style="color: #a31515">&quot;510&quot;</span>, o.inputOutputStr);
+}
+
+[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> MapDataRow()
+{
+	DataTable dataTable = <span style="color: #0000ff">new</span> DataTable();
+	dataTable.Columns.Add(<span style="color: #a31515">&quot;ID&quot;</span>,             <span style="color: #0000ff">typeof</span>(<span style="color: #2b91af">int</span>));
+	dataTable.Columns.Add(<span style="color: #a31515">&quot;outputID&quot;</span>,       <span style="color: #0000ff">typeof</span>(<span style="color: #2b91af">int</span>));
+	dataTable.Columns.Add(<span style="color: #a31515">&quot;inputOutputID&quot;</span>,  <span style="color: #0000ff">typeof</span>(<span style="color: #2b91af">int</span>));
+	dataTable.Columns.Add(<span style="color: #a31515">&quot;str&quot;</span>,            <span style="color: #0000ff">typeof</span>(<span style="color: #2b91af">string</span>));
+	dataTable.Columns.Add(<span style="color: #a31515">&quot;outputStr&quot;</span>,      <span style="color: #0000ff">typeof</span>(<span style="color: #2b91af">string</span>));
+	dataTable.Columns.Add(<span style="color: #a31515">&quot;inputOutputStr&quot;</span>, <span style="color: #0000ff">typeof</span>(<span style="color: #2b91af">string</span>));
+
+	DataRow dataRow = dataTable.Rows.Add(<span style="color: #0000ff">new</span> <span style="color: #2b91af">object</span>[]{5, 0, 10, <span style="color: #a31515">&quot;5&quot;</span>, 10<span style="color: #a31515">&quot;});</span>
+
+	<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+	{
+		db
+			.SetSpCommand(<span style="color: #a31515">&quot;OutRefTest&quot;</span>, teParameters(dataRow,
+				<span style="color: #0000ff">new</span> <span style="color: #2b91af">string</span>[] {      <span style="color: #a31515">&quot;outputID&quot;</span>,      Str<span style="color: #a31515">&quot; },</span>
+				<span style="color: #0000ff">new</span> <span style="color: #2b91af">string</span>[] { <span style="color: #a31515">&quot;inputOutputID&quot;</span>, utputStr<span style="color: #a31515">&quot; },</span>
+				<span style="color: #0000ff">null</span>))
+			.ExecuteNonQuery(dataRow);
+	}
+
+	Assert.AreEqual(5,     dataRow[<span style="color: #a31515">&quot;outputID&quot;</span>]);
+	Assert.AreEqual(15,    dataRow[<span style="color: #a31515">&quot;inputOutputID&quot;</span>]);
+	Assert.AreEqual(<span style="color: #a31515">&quot;5&quot;</span>,   dataRow[<span style="color: #a31515">&quot;outputStr&quot;</span>]);
+	Assert.AreEqual(<span style="color: #a31515">&quot;510&quot;</span>, dataRow[<span style="color: #a31515">&quot;inputOutputStr&quot;</span>]);
+}
+</pre></div>
+<p>Здесь я специально рассмотрел два примера, хотя, по сути, демонстрируют они <strong>одинаковое</strong> использование <em>ExecuteNonQuery</em>. Разница заключается в том, что в первом тесте отображение происходит на бизнес объект класса <em>OutRefTest</em> а во втором на объект класса <em>DataRow</em>. BLT с успехом справляется с задачей отображения «ужа на ежа» а при необходимости и «ужа на слона».</p>
+<p>Отличием этих двух тестов от предыдущего, является то, что мы не сообщили <strong>явно</strong> куда и что отображать. Это не есть проявление телепатии, это есть проявление здравого смысла – при мапинге система ориентируется в частности на имена полей и параметров. В рассмотренном примере имена полей класса <em>OutRefTest</em> и ячеек объекта <em>dataRow</em> совпадают с именами параметров хранимой процедуры <em>OutRefTest</em>, именно по этим признакам система поняла, что и куда раскладывать.</p>
+<p><span id="executescalar"></span></p>
+<h4>ExecuteScalar</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #2b91af">object</span> ExecuteScalar();
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">object</span> ExecuteScalar(ScalarSourceType sourceType);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">object</span> ExecuteScalar(
+    ScalarSourceType     sourceType, 
+    NameOrIndexParameter nameOrIndex);
+
+<span style="color: #0000ff">public</span> T ExecuteScalar&lt;T&gt;();
+
+<span style="color: #0000ff">public</span> T ExecuteScalar&lt;T&gt;(ScalarSourceType sourceType);
+
+<span style="color: #0000ff">public</span> T ExecuteScalar&lt;T&gt;(
+    ScalarSourceType     sourceType, 
+    NameOrIndexParameter nameOrIndex);
+</pre></div>
+<p>Семейство предназначено для получения скалярных величин. Функции без параметров возвращают значение в первой колонке первой строки полученного запросом кортежа. </p>
+<p>Подробнее рассмотрим параметры:</p>
+<ul>
+<li><em>sourceType</em> – одно из значений перечисления <em>ScalarSourceType</em>, может принимать следующие значения: <em>DataReader</em> – будет возвращено значение в первой колонке первой строки кортежа; <em>OutputParameter</em> – будет возвращен первый выходной параметр; <em>ReturnValue</em> – позволяет получить возвращаемое значение; <em>AffectedRows</em> – количество строк, обработанных запросом.</li>
+<li><em>nameOrIndex</em> – позволяет задать имя \ номер колонки (для <em>ScalarSource.DataReader</em>) либо параметра (для <em>ScslsrSource.OutputParameter</em>) которые следует возвращать.</li>
+</ul>
+<p>Generic версии методов позволяют явно задать тип возвращаемого значения.</p>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Мы не будем рассматривать примеры для семейств ExecuteScalar*, вместо этого мы рассмотрим примеры к ExecuteObject и родственным ему семействам. По структуре они практически идентичны, но ExecuteObject гораздо интереснее :).
+</blockquote>
+<p><span id="executescalarlist"></span></p>
+<h4>ExecuteScalarList</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IList ExecuteScalarList(
+    IList                list,
+    Type                 type,
+    NameOrIndexParameter nameOrIndex);
+
+<span style="color: #0000ff">public</span> IList ExecuteScalarList(
+    IList list, 
+    Type  type);
+
+<span style="color: #0000ff">public</span> ArrayList ExecuteScalarList(
+    Type                 type, 
+    NameOrIndexParameter nameOrIndex);
+
+<span style="color: #0000ff">public</span> ArrayList ExecuteScalarList(Type type);
+
+<span style="color: #0000ff">public</span> List&lt;T&gt; ExecuteScalarList&lt;T&gt;();
+
+<span style="color: #0000ff">public</span> List&lt;T&gt; ExecuteScalarList&lt;T&gt;(NameOrIndexParameter nameOrIndex);
+
+<span style="color: #0000ff">public</span> IList&lt;T&gt; ExecuteScalarList&lt;T&gt;(
+    IList&lt;T&gt;             list,
+    NameOrIndexParameter nameOrIndex);
+
+<span style="color: #0000ff">public</span> IList&lt;T&gt; ExecuteScalarList&lt;T&gt;(IList&lt;T&gt; list);
+</pre></div>
+<p>Семейство предназначено для вычитки списка скалярных величин. Практически все параметры идентичны по семантике параметрам семейства ExecuteScalar. Параметр <em>type</em> задает требуемый тип вычитываемой скалярной величины.</p>
+<p><span id="executescalardictionary"></span></p>
+<h4>ExecuteScalarDictionary</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDictionary ExecuteScalarDictionary(
+	IDictionary dic,
+	NameOrIndexParameter keyField,   Type keyFieldType,
+	NameOrIndexParameter valueField, Type valueFieldType);
+
+<span style="color: #0000ff">public</span> Hashtable ExecuteScalarDictionary(
+	NameOrIndexParameter keyField,   Type keyFieldType,
+	NameOrIndexParameter valueField, Type valueFieldType);
+
+<span style="color: #0000ff">public</span> IDictionary&lt;K,T&gt; ExecuteScalarDictionary&lt;K,T&gt;(
+	IDictionary&lt;K,T&gt;     dic,
+	NameOrIndexParameter keyField,
+	NameOrIndexParameter valueField);
+
+<span style="color: #0000ff">public</span> Dictionary&lt;K,T&gt; ExecuteScalarDictionary&lt;K,T&gt;(
+	NameOrIndexParameter keyField,
+	NameOrIndexParameter valueField);
+</pre></div>
+<p>Одной из приятностей BLToolkit является возможность возвращать не просто списки, а словари. Итак, данное семейство возвращает словари скалярных величин из кортежа. Параметры по семантике аналогичны семейству ExecuteScalar, прификс <em>key</em> – для ключа, прификс <em>value</em> для значения.</p>
+<p>Но, на этом еще не все. У данного семейства есть еще подсемейство:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> IDictionary ExecuteScalarDictionary(
+	IDictionary          dic,
+	MapIndex             index,
+	NameOrIndexParameter valueField,
+	Type                 valueFieldType);
+
+<span style="color: #0000ff">public</span> Hashtable ExecuteScalarDictionary(
+	MapIndex             index, 
+	NameOrIndexParameter valueField, 
+	Type                 valueFieldType);
+
+<span style="color: #0000ff">public</span> IDictionary&lt;CompoundValue,T&gt; ExecuteScalarDictionary&lt;T&gt;(
+	IDictionary&lt;CompoundValue, T&gt; dic, 
+	MapIndex                      index, 
+	NameOrIndexParameter          valueField);
+
+<span style="color: #0000ff">public</span> Dictionary&lt;CompoundValue,T&gt; ExecuteScalarDictionary&lt;T&gt;(
+	MapIndex             index, 
+	NameOrIndexParameter valueField)
+</pre></div>
+<p>Отличается оно тем, что вместо параметров с префиксом <em>key</em> используется параметр <em>index</em>. Параметр <em>index</em> позволяет строить индекс не по одному ключевому полю, а по их совокупности. Таким образом, ключом в результирующем словаре будет экземпляр класса <em>CompaundValue</em>, представляющий сложный ключ как единый объект. Мы обязательно рассмотрим пример использования «индексированных» словарей, но ниже.</p>
+<p><span id="executeobject"></span></p>
+<h4>ExecuteObject</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #2b91af">object</span> ExecuteObject(<span style="color: #2b91af">object</span> entity);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">object</span> ExecuteObject(<span style="color: #2b91af">object</span> entity, <span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">object</span> ExecuteObject(Type type);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">object</span> ExecuteObject(Type type, <span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> T ExecuteObject&lt;T&gt;();
+
+<span style="color: #0000ff">public</span> T ExecuteObject&lt;T&gt;(<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+</pre></div>
+<p>Пожалуй, одно из самых интересных семейств. Предназначено для чтения одной записи возвращаемого кортежа в бизнес объект.</p>
+<p>Рассмотрим параметры функций:</p>
+<ul>
+<li><em>entity</em> – объект, куда будет осуществлено чтение.</li>
+<li><em>type</em> – задает требуемый тип возвращаемого объекта.</li>
+<li><em>parameters</em> – дополнительные параметры, которые будут переданы в конструктор. Здесь стоит отметить, что переданы они будут как соответствующее свойство объекта <em>InitContext</em>, класс бизнес объекта, в свою очередь, должен иметь конструктор вида <em>MyObject(InitContext context)</em>.</li>
+</ul>
+<p>Рассмотрим пример:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> ExecuteObject()
+{
+	<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+	{
+		Person p = (Person)db
+			.SetCommand(<span style="color: #a31515">&quot;SELECT * FROM Person WHERE PersonID = @id&quot;</span>,
+			db.Parameter(<span style="color: #a31515">&quot;id&quot;</span>, 1))
+			.ExecuteObject(<span style="color: #0000ff">typeof</span>(Person));
+
+		TypeAccessor.WriteConsole(p);
+		Assert.AreEqual(1,           p.ID);
+		Assert.AreEqual(<span style="color: #a31515">&quot;John&quot;</span>,      p.FirstName);
+		Assert.AreEqual(<span style="color: #a31515">&quot;Pupkin&quot;</span>,    p.LastName);
+		Assert.AreEqual(Gender.Male, p.Gender);
+	}
+}
+</pre></div>
+<p>Кортеж будет иметь следующий вид:</p>
+<table border="1" cellspacing="0" cellpadding="2">
+	<thead>
+		<tr>
+			<th>PersonId</th>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>MiddleName</th>
+			<th>Gender</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>John</td>
+			<td>Pupkin</td>
+			<td><i>NULL</i></td>
+			<td>M</td>
+		</tr>
+	</tbody>
+</table>
+<p>Итак, система отобразила выбранную запись на бизнес объект типа Person. Подробней стоит остановиться на полях Person.ID и Person.Gender. Отметим пару интересных моментов:</p>
+<ul>
+<li>В исходном кортеже нет поля ID, а в классе Person поля PersonId. Эта проблема была решена атрибутом MapField(“PersonId”), установленным на поле Person.ID. Так мы сообщили системе, что при мапинге у данного поля будет псевдоним отличный от «родового имени».</li>
+<li>В исходном кортеже поле Gender имеет символьный тип, Person.Gender – является перечислением. Здесь нас выручил атрибут MapValue(“M”) – им мы указали системе, что при отображении данное значение является эквивалентным “M”.</li>
+</ul>
+<p><span id="executelist"></span></p>
+<h4>ExecuteList</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> ArrayList ExecuteList(Type type);
+
+<span style="color: #0000ff">public</span> ArrayList ExecuteList(Type type, <span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> IList ExecuteList(IList list, Type type);
+
+<span style="color: #0000ff">public</span> IList ExecuteList(
+    IList           list, 
+    Type            type, 
+    <span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> List&lt;T&gt; ExecuteList&lt;T&gt;();
+
+<span style="color: #0000ff">public</span> List&lt;T&gt; ExecuteList&lt;T&gt;(<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> IList&lt;T&gt; ExecuteList&lt;T&gt;(IList&lt;T&gt; list);
+
+<span style="color: #0000ff">public</span> IList&lt;T&gt; ExecuteList&lt;T&gt;(IList&lt;T&gt; list, <span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> L ExecuteList&lt;L,T&gt;(L list, <span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters)
+    <span style="color: #0000ff">where</span> L : IList&lt;T&gt;;
+
+<span style="color: #0000ff">public</span> L ExecuteList&lt;L,T&gt;(<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters)
+    <span style="color: #0000ff">where</span> L : IList&lt;T&gt;, <span style="color: #0000ff">new</span>();
+</pre></div>
+<p>Данное семейство предназначено для чтения списка объектов из выбранного кортежа. Параметры аналогичны семейству ExecuteObject, поэтому на них мы останавливаться не будем.</p>
+<blockquote style="background-color: #FFE4E4; color: #FF5555;">
+Не используйте данное семейство для вычитки списка скалярных величин, для этого существует семейство <b>ExecuteScalarList</b>.
+</blockquote>
+<p>Рассмотрим небольшой пример использования данного семейства:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> ExecuteList1()
+{
+	<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+	{
+		ArrayList list = db
+			.SetCommand(<span style="color: #a31515">&quot;SELECT * FROM Person&quot;</span>)
+			.ExecuteList(<span style="color: #0000ff">typeof</span>(Person));
+		
+		Assert.IsNotEmpty(list);
+	}
+}
+</pre></div>
+<p><span id="executedictionary"></span></p>
+<h4>ExecuteDictionary</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> Hashtable ExecuteDictionary(
+	NameOrIndexParameter keyField,
+	Type                 keyFieldType,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]      parameters);
+
+<span style="color: #0000ff">public</span> IDictionary ExecuteDictionary(
+	IDictionary          dictionary,
+	NameOrIndexParameter keyField,
+	Type                 type,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]      parameters);
+
+<span style="color: #0000ff">public</span> Dictionary&lt;TKey, TValue&gt; ExecuteDictionary&lt;TKey, TValue&gt;(
+	NameOrIndexParameter keyField,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]      parameters);
+
+<span style="color: #0000ff">public</span> IDictionary&lt;TKey, TValue&gt; ExecuteDictionary&lt;TKey, TValue&gt;(
+	IDictionary&lt;TKey, TValue&gt; dictionary,
+	NameOrIndexParameter      keyField,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]           parameters);
+
+<span style="color: #0000ff">public</span> IDictionary&lt;TKey, TValue&gt; ExecuteDictionary&lt;TKey, TValue&gt;(
+	IDictionary&lt;TKey, TValue&gt; dictionary,
+	NameOrIndexParameter      keyField,
+	Type                      destObjectType,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]           parameters)
+</pre></div>
+<p>Позволяет вычитывать словарь бизнес объектов из кортежа. Семантика параметров аналогична ExecuteScalarDictionary и ExecuteObject. Параметру type и destObjectType – задают требуемый тип бизнес объекта.</p>
+<blockquote style="background-color: #FFE4E4; color: #FF5555;">
+Не используйте данное семейство для вычитки словарей скалярных величин, для этого есть семейство <b>ExecuteScalarDictionary</b>.
+</blockquote>
+<p>Как и в случае с ExecuteScalarDictionary ExecuteDictionary имеет «индексированное» подсемейство:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> Hashtable ExecuteDictionary(
+	MapIndex        index,
+	Type            type,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> IDictionary ExecuteDictionary(
+	IDictionary     dictionary,
+	MapIndex        index,
+	Type            type,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> Dictionary&lt;CompoundValue, TValue&gt; ExecuteDictionary&lt;TValue&gt;(
+	MapIndex        index,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> IDictionary&lt;CompoundValue, TValue&gt; ExecuteDictionary&lt;TValue&gt;(
+	IDictionary&lt;CompoundValue, TValue&gt; dictionary,
+	MapIndex                           index,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]                    parameters);
+
+<span style="color: #0000ff">public</span> IDictionary&lt;CompoundValue, TValue&gt; ExecuteDictionary&lt;TValue&gt;(
+	IDictionary&lt;CompoundValue, TValue&gt; dictionary,
+	MapIndex                           index,
+	Type                               destObjectType,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]                    parameters)
+</pre></div>
+<p>Опять-таки, нам тут все знакомо, поэтому для закрепления понимания сразу перейдем к примеру:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">private</span> <span style="color: #0000ff">const</span> <span style="color: #2b91af">int</span>     _id = 1;
+
+[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> DictionaryMapIndexTest3()
+{
+	<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+	{
+		Hashtable table = <span style="color: #0000ff">new</span> Hashtable();
+		db
+			.SetCommand(<span style="color: #a31515">&quot;SELECT * FROM Person&quot;</span>)
+			.ExecuteDictionary(table,
+			<span style="color: #0000ff">new</span> MapIndex(<span style="color: #a31515">&quot;@PersonID&quot;</span>, 2, 3), <span style="color: #0000ff">typeof</span>(Person));
+
+		Assert.IsNotNull(table);
+		Assert.IsTrue(table.Count &gt; 0);
+
+		Person actualValue = (Person)table[<span style="color: #0000ff">new</span> CompoundValue(_id, <span style="color: #a31515">&quot;&quot;</span>, <span style="color: #a31515">&quot;Pupkin&quot;</span>)];
+		Assert.IsNotNull(actualValue);
+		Assert.AreEqual(<span style="color: #a31515">&quot;John&quot;</span>, actualValue.FirstName);
+	}
+}
+</pre></div>
+<p>В примере используется сложный ключ, состоящий из полей PersonId, третьего поля в кортеже (все считается с нуля) – SecondName и четвертого поля в кортеже – MiddleName. Ключом в словаре является объект класса CompaundValue.</p>
+<p>Ну и как всегда, если нам не нужны такие изыски (сложные ключи) то можно сделать все гораздо проще:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> GenericsDictionaryTest()
+{
+	<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+	{
+		Dictionary&lt;<span style="color: #2b91af">int</span>, Person&gt; dic = db
+			.SetCommand(<span style="color: #a31515">&quot;SELECT * FROM Person&quot;</span>)
+			.ExecuteDictionary&lt;<span style="color: #2b91af">int</span>, Person&gt;(<span style="color: #a31515">&quot;ID&quot;</span>);
+
+		Assert.IsNotNull(dic);
+		Assert.IsTrue(dic.Count &gt; 0);
+
+		Person actualValue = dic[1];
+		Assert.IsNotNull(actualValue);
+		Assert.AreEqual(<span style="color: #a31515">&quot;John&quot;</span>, actualValue.FirstName);
+	}
+}
+</pre></div>
+<blockquote style="background-color: #FFE4E4; color: #FF5555;">
+Как видно из примеров, в одном случае используется «@PersonId» а в другом «ID». Разница в следующем: если не указано '@', то значение берётся из поля уже смапленного объекта, если '@' присутствует, то из исходной записи.
+</blockquote>
+<blockquote style="background-color: #FFE4E4; color: #FF5555;">
+Зачем это надо. Первый случай может пригодиться, если словарь строится по полю, которое явно не отображается на исходную запись. Например, какое-нибудь составное поле в объекте. Второй случай может понадобиться, когда нужно построить словарь по полю, которое есть в исходном рекордсете, но не отображается на объект. Если ключевое поле один в один отображается на объект, то разницы нет.
+</blockquote>
+<blockquote style="background-color: #FFE4E4; color: #FF5555;">
+Оригинал by <a href="http://rsdn.ru/Users/1.aspx">Игорь Ткачев</a> – <a href="http://rsdn.ru/forum/message/3017055.1.aspx">здесь</a>.
+</blockquote>
+<p><span id="executeforeach"></span></p>
+<h4>ExecuteForEach</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteForEach(ICollection collection);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteForEach&lt;T&gt;(ICollection&lt;T&gt; collection);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteForEach(DataTable table);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteForEach(DataSet dataSet);
+
+<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ExecuteForEach(DataSet dataSet, NameOrIndexParameter nameOrIndex);
+</pre></div>
+<p>Ранее я уже приводил пример данного семейства. Но не грех и повторить: данное семейство выполняет SQL выражение для заданного множества. Сначала команда готовит выражение, используя метод <em>Prepare()</em> после чего выполняет <em>ExecuteNonQuery()</em> для каждого элемента коллекции (из элементов коллекции заполняются значения параметров).</p>
+<p>Параметры, подробно описывать не буду, замечу только, что для <em>dataSet</em> без <em>nameOrIndex</em> выражение будет выполнено для первой таблицы (индекс == 0).</p>
+<p><span id="executeresultsets"></span></p>
+<h4>ExecuteResultSets</h4>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> MapResultSet[] ExecuteResultSet(<span style="color: #0000ff">params</span> MapResultSet[] resultSets);
+
+<span style="color: #0000ff">public</span> MapResultSet[] ExecuteResultSet(
+	Type masterType, 
+	<span style="color: #0000ff">params</span> MapNextResult[] nextResults);
+
+<span style="color: #0000ff">public</span> MapResultSet[] ExecuteResultSet&lt;T&gt;(<span style="color: #0000ff">params</span> MapNextResult[] nextResults);
+</pre></div>
+<p>Это семейство позволяет выполнять комплексное отображение данных на сложную связанную иерархию объектов.</p>
+<p>Можно долго рассказывать, как и что, но проще разобрать все на примере. В примере заданы следующие связи (в рамках объектной модели):</p>
+<ul>
+<li>Parent к Child – ко многим </li>
+<li>Child к Parent – к одному</li>
+<li>Child к Grandchild – ко многим</li>
+<li>Grandchild к Child – к одному.</li>
+</ul>
+<p>Таким образом, имеем иерархию из 3 взаимосвязанных классов.</p>
+<p>Особое внимание следует обратить на то, что повязка осуществляется по именам для отображения.</p>
+<p>Читайте, наслаждайтесь (примечания в комментариях к тексту):</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[TestFixture]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">ComplexMapping</span>
+{
+	<span style="color: #008000">// запрос с 3 связанными таблицами</span>
+	<span style="color: #0000ff">const</span> <span style="color: #2b91af">string</span> TestQuery = <span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">		-- Parent Data</span>
+<span style="color: #a31515">		SELECT       1 as ParentID</span>
+<span style="color: #a31515">		UNION SELECT 2 as ParentID</span>
+
+<span style="color: #a31515">		-- Child Data</span>
+<span style="color: #a31515">		SELECT       4 ChildID, 1 as ParentID</span>
+<span style="color: #a31515">		UNION SELECT 5 ChildID, 2 as ParentID</span>
+<span style="color: #a31515">		UNION SELECT 6 ChildID, 2 as ParentID</span>
+<span style="color: #a31515">		UNION SELECT 7 ChildID, 1 as ParentID</span>
+
+<span style="color: #a31515">		-- Grandchild Data</span>
+<span style="color: #a31515">		SELECT       1 GrandchildID, 4 as ChildID</span>
+<span style="color: #a31515">		UNION SELECT 2 GrandchildID, 4 as ChildID</span>
+<span style="color: #a31515">		UNION SELECT 3 GrandchildID, 5 as ChildID</span>
+<span style="color: #a31515">		UNION SELECT 4 GrandchildID, 5 as ChildID</span>
+<span style="color: #a31515">		UNION SELECT 5 GrandchildID, 6 as ChildID</span>
+<span style="color: #a31515">		UNION SELECT 6 GrandchildID, 6 as ChildID</span>
+<span style="color: #a31515">		UNION SELECT 7 GrandchildID, 7 as ChildID</span>
+<span style="color: #a31515">		UNION SELECT 8 GrandchildID, 7 as ChildID</span>
+<span style="color: #a31515">&quot;</span>;
+	<span style="color: #008000">// верхний класс</span>
+	<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Parent</span>
+	{
+		[MapField(&quot;ParentID&quot;)]
+		<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ID;
+		<span style="color: #008000">// Список подчиненных объектов</span>
+		<span style="color: #0000ff">public</span> List&lt;Child&gt; Children = <span style="color: #0000ff">new</span> List&lt;Child&gt;();
+	}
+	<span style="color: #008000">// класс связанный с Parent</span>
+	[MapField(&quot;ParentID&quot;, &quot;Parent.ID&quot;)]
+	<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Child</span>
+	{
+		[MapField(&quot;ChildID&quot;)]
+		<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ID;
+		<span style="color: #008000">// родительский объект</span>
+		<span style="color: #0000ff">public</span> Parent Parent = <span style="color: #0000ff">new</span> Parent();
+		<span style="color: #008000">//Список подчиненных объектов</span>
+		<span style="color: #0000ff">public</span> List&lt;Grandchild&gt; Grandchildren = <span style="color: #0000ff">new</span> List&lt;Grandchild&gt;();
+	}
+	<span style="color: #008000">// Класс связи связанный с Child </span>
+	[MapField(&quot;ChildID&quot;, &quot;Child.ID&quot;)]
+	<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Grandchild</span>
+	{
+		[MapField(&quot;GrandchildID&quot;)]
+		<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> ID;
+		<span style="color: #008000">// родительский объект</span>
+		<span style="color: #0000ff">public</span> Child Child = <span style="color: #0000ff">new</span> Child();
+	}
+
+	[Test]
+	<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> Test()
+	{
+		<span style="color: #008000">// список родительских объектов – «корень» который будет заполнен</span>
+		List&lt;Parent&gt;   parents = <span style="color: #0000ff">new</span> List&lt;Parent&gt;();
+		<span style="color: #008000">// массив резалтсетов</span>
+		<span style="color: #008000">/*[/a]*/</span>MapResultSet<span style="color: #008000">/*[/a]*/</span>[] sets    = <span style="color: #0000ff">new</span> MapResultSet[3];
+
+		<span style="color: #008000">//создадим резалтсет для корневого списка</span>
+		<span style="color: #008000">// в качестве параметров переданы тип корневого объекта и </span>
+		<span style="color: #008000">// и список объектов, который следует заполнить</span>
+		sets[0] = <span style="color: #0000ff">new</span> MapResultSet(<span style="color: #0000ff">typeof</span>(Parent), parents);
+		sets[1] = <span style="color: #0000ff">new</span> MapResultSet(<span style="color: #0000ff">typeof</span>(Child));
+		sets[2] = <span style="color: #0000ff">new</span> MapResultSet(<span style="color: #0000ff">typeof</span>(Grandchild));
+
+		<span style="color: #008000">// зададим связь резалтсету «Parent» устанавливается подчиненная</span>
+		<span style="color: #008000">// связь к резалтсету «Child»</span>
+		<span style="color: #008000">// параметры:</span>
+		<span style="color: #008000">// имя поля отображения по которому осуществляется связь в подчиненном объекте</span>
+		<span style="color: #008000">// имя поля отображения по которому осуществляется связь в родительском объекте</span>
+		<span style="color: #008000">// имя поля отображения в родительском объекте для заполнения дочерними</span>
+		sets[0].AddRelation(sets[1], <span style="color: #a31515">&quot;ParentID&quot;</span>, <span style="color: #a31515">&quot;ParentID&quot;</span>, <span style="color: #a31515">&quot;Children&quot;</span>);
+		<span style="color: #008000">// все практически аналогично, но теперь задается обратная связь</span>
+		<span style="color: #008000">// от Child к Parent</span>
+		<span style="color: #008000">// таким образом в результате отображения будет заполнено не только</span>
+		<span style="color: #008000">// поле Parent.Children но и для каждого Child из Children будет задан Parent</span>
+		sets[1].AddRelation(sets[0], <span style="color: #a31515">&quot;ParentID&quot;</span>, <span style="color: #a31515">&quot;ParentID&quot;</span>, <span style="color: #a31515">&quot;Parent&quot;</span>);
+
+		<span style="color: #008000">// Аналогично, но уже от Child к Grandchild и наоборот</span>
+		sets[1].AddRelation(sets[2], <span style="color: #a31515">&quot;ChildID&quot;</span>, <span style="color: #a31515">&quot;ChildID&quot;</span>, <span style="color: #a31515">&quot;Grandchildren&quot;</span>);
+		sets[2].AddRelation(sets[1], <span style="color: #a31515">&quot;ChildID&quot;</span>, <span style="color: #a31515">&quot;ChildID&quot;</span>, <span style="color: #a31515">&quot;Child&quot;</span>);
+
+		<span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+		{
+			db
+				.SetCommand      (TestQuery)
+				.ExecuteResultSet(sets);
+		}
+		<span style="color: #008000">// здесь проверки правильности заполнения</span>
+		Assert.IsNotEmpty(parents);
+
+		<span style="color: #0000ff">foreach</span> (Parent parent <span style="color: #0000ff">in</span> parents)
+		{
+			Assert.IsNotNull(parent);
+			Assert.IsNotEmpty(parent.Children);
+
+			<span style="color: #0000ff">foreach</span> (Child child <span style="color: #0000ff">in</span> parent.Children)
+			{
+				Assert.AreEqual(parent, child.Parent);
+				Assert.IsNotEmpty(child.Grandchildren);
+
+				<span style="color: #0000ff">foreach</span> (Grandchild grandchild <span style="color: #0000ff">in</span> child.Grandchildren)
+				{
+					Assert.AreEqual(child,  grandchild.Child);
+					Assert.AreEqual(parent, grandchild.Child.Parent);
+				}
+			}
+		}
+	}
+}
+</pre></div>
+<p>В приведенном примере для осуществления повязки используются строковые имена, аналогично можно использовать составные индексы, при помощи уже известного нам класса MapIndex (если забыли то см. ExecuteScalarDictionary и ExecuteDictionary и их индексированные подсемейства).</p>
+<p><span id="mapping"></span></p>
+<h2>Отображение данных</h2>
+<p><span id="mappinggeneral"></span></p>
+<h3>Общие сведенья</h3>
+<p>ADO.NET поддерживает два способа чтения данных из источника: прямое чтение из объекта класса <em>DataReader</em>, либо с помощью класса <em>DataAdapter</em> в экземпляр класса <em>DataSet</em>, который по сути представляет собой единственный вариант бизнес сущностей, предлагаемых и культивируемых Microsoft. </p>
+<p>Оставим сегодня в покое достоинства и преимущества класса <em>DataSet</em>, и лишь заметим, что часто бывает необходимо уметь читать данные непосредственно в бизнес объекты приложения. При этом иногда нужно выполнять некоторые действия по отображению данных, например, из строковых значений в перечислители (enumerators) или замене значений <em>NULL</em> на нечто более удобоваримое. Как вы заметили из нашего самого первого примера, класс <em>DbManager</em> великодушно предоставляет нам такие возможности.</p>
+<p>Вернемся к примеру использования семейства <em>ExecuteList</em>, и разберем подробнее что там происходит.</p>
+<p>Метод <em>ExecuteList</em> создаёт экземпляр класса <em>Person</em> для каждой записи в таблице, затем осуществляет отображение данных на поля объекта и добавляет его в список. Для отображения колонок таблицы на поля и свойства нашего объекта используется механизм <em>Reflection</em>, единственным недостатком которого является некоторая нерасторопность. Для решения этой проблемы применён ещё один механизм .NET – генерация исполняемого кода во время выполнения программы (<em>System.Reflection.Emit</em> namespace), что позволяет максимально увеличить производительность и свести использование <em>Reflection</em> только для начальной инициализации.</p>
+<p>В отображении участвуют поля и свойства класса, удовлетворяющие следующим требованиям:</p>
+<ul>
+<li>Модификатор доступа – <em>public</em>, либо <em>internal</em> (работает в случае с динамически генерируемыми классами).</li>
+<li>Тип является скалярным либо, одним из перечисленных: <em>Guid</em>, <em>SqlBinary</em>, <em>SqlBoolean</em>, <em>SqlByte</em>, <em>SqlDateTime</em>, <em>SqlDecimal</em>, <em>SqlDouble</em>, <em>SqlGuid</em>, <em>SqlInt16</em>, <em>SqlInt32</em>, <em>SqlInt64</em>, <em>SqlMoney</em>, <em>SqlSingle</em>, <em>SqlSting</em>, <em>XmlReader</em>, <em>XmlDocument</em>.</li>
+<li>Для поля \ свойства задан <em>MemberMapper</em> (подробнее ниже).</li>
+<li>Для поля \ свойства задан атрибут <em>MapIgnore(false)</em> (подробнее об атрибутах ниже). В данном случае допускаются к использованию поля типа: <em>byte[]</em>, <em>Stream</em>, <em>SqlBytes</em>, <em>SqlChars</em>, <em>SqlXml</em>.</li>
+</ul>
+<p><span id="mapandschema"></span></p>
+<h3>Map &amp; MappingSchema</h3>
+<p>Как и следовало ожидать, <em>DbManager</em> вовсе не сам выполняет операции по отображению. Эти действия он делегирует объекту класса <em>MappingSchema</em>.  В заголовке упомянут так же класс <em>Map</em> – это статический класс, предназначенный для упрощения доступа к функциям <em>MappingSchema</em>, ввиду чего мы не будем подробно его рассматривать, и сосредоточимся на <em>MappingSchema</em>.</p>
+<p>Итак, <em>MappingSchema</em> содержит в себе весь необходимый для выполнения отображения контекст, а так же набор семейств функций по отображению ужей на ежей.  Более того, <em>MappingSchema</em> содержит так же правила преобразования (конвертации) данных из одного формата в другой (ну, например из <em>Int32</em> в <em>Boolean</em>, из <em>String</em> в <em>Boolean</em> и наоборот). Все это превращает <em>MappingSchema</em> в мощный инструмент по преобразованию и отображению данных.</p>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Лирическое отступление на тему OdpDataProvider:
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Орлы из оракла не пользуются SqlString, SqlInt32 и т.п. типами, а напридумывали велосипедов. Поэтому приходится прилагать так много усилий, чтобы привести всякие OracleDecimal хотя бы к System.Decimal.
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Оригинал by <a href="http://www.rsdn.ru/Users/507.aspx">Павел Блудов</a> – <a href="http://www.rsdn.ru/forum/message/2479957.1.aspx">здесь</a>.
+</blockquote>
+<p><span id="mappingschema"></span></p>
+<h3>Семейства функций MappingSchema</h3>
+<p>Данные семейства можно разделить на два больших класса:</p>
+<ul>
+<li>Convert – преобразование данных.</li>
+<li>Map – отображение данных.</li>
+</ul>
+<p><span id="mappingconvert"></span></p>
+<h4>Семейства Convert</h4>
+<p>Тут все достаточно просто и понятно по семантике методов: </p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000">// шаблон имени выгляди следующим образом:</span>
+<span style="color: #008000">// ConvertToDestinatonType(object value) ;</span>
+<span style="color: #008000">// где DestinatonType – тип в который необходимо преобразовать.</span>
+<span style="color: #008000">// к Int32</span>
+ConvertToInt32(<span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>);
+<span style="color: #008000">// к Int32?</span>
+ConvertToNullableInt32(<span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>);
+<span style="color: #008000">// к SqlInt32</span>
+ConvertToSqlInt32(<span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>);
+</pre></div>
+<p>По умолчанию <em>MappingSchema</em> делегирует подобные вызовы к классу <em>Convert</em> (<em>BLToolkit.Common.Convert</em>). Данный класс можно расценивать как замену стандартному классу <em>System.Convert</em>, который можно смело назвать &quot;младшим братом&quot;, т.к. <em>BLToolkit.Common.Convert</em> значительно превосходит его по возможностям.</p>
+<p>Отдельно стоит отметить следующие &quot;высокоуровневые&quot; функции:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">object</span> ConvertChangeType(
+	<span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>, 
+	Type   conversionType);
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">object</span> ConvertChangeType(
+	<span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>, 
+	Type   conversionType, 
+	<span style="color: #2b91af">bool</span>   isNullable);
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> T ConvertTo&lt;T, P&gt;(P <span style="color: #0000ff">value</span>);
+</pre></div>
+<p>Разберем подробнее параметры</p>
+<ul>
+<li><em>value</em> – значение, которое необходимо преобразовать.</li>
+<li><em>conversionType</em> – результирующий тип к которому необходимо преобразовать.</li>
+<li><em>isNullable</em> – указывает допускает ли результирующий тип значение null.</li>
+<li><em>&lt;T, P&gt;</em> - T – результирующий тип, P – исходный тип.</li>
+</ul>
+<p>Ввиду прозрачности функций <em>Convert</em>* примеров я приводить не буду.</p>
+<p><span id="mappingmap"></span></p>
+<h4>Семейства Map</h4>
+<p>Вкратце изложу структуру данного раздела: во-первых, я расскажу про общие принципы именования методов и стандартные виды отображений; во-вторых, я более подробно расскажу о том как это все работает на «низком» уровне.</p>
+<p>Семантика методов семейства Map следующая: Map<em>Source</em>To<em>Destination</em> – все просто: отобразить источник на конечную сущность.</p>
+<p>Стандартные участники мапинга (в обе стороны):</p>
+<ul>
+<li>DataReader (IDataReader).</li>
+<li>DataRow.</li>
+<li>DataTable.</li>
+<li>Dictionary (IDictionary, IDictionary&lt;K, T&gt;).</li>
+<li>List (IList, IList<T>).</li>
+<li>Object (бизнес объект).</li>
+<li>ScalarList(IList, IList<T>).</li>
+<li>ResultSet.</li>
+<li>EnumToValue &amp; ValueToEnum.</li>
+</ul>
+<p>Как вы уже догадались, в большинстве методов Execute класса <em>DbManager</em> прячется обращение к семейству MapDataReaderTo<em>Destination</em>, мы достаточно подробно разобрали методы Execute и их параметры, так что, разобраться с параметрами семейств Map для вас не должно составить особого труда.</p>
+<p>Самым «низким» уровнем отображения являются следующие методы:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> MapSourceToDestination(
+	IMapDataSource      source, <span style="color: #2b91af">object</span> sourceObject, 
+	IMapDataDestination dest,   <span style="color: #2b91af">object</span> destObject,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]     parameters);
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> MapSourceToDestination(
+	<span style="color: #2b91af">object</span>          sourceObject,
+	<span style="color: #2b91af">object</span>          destObject,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[] parameters);
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #0000ff">void</span> MapSourceListToDestinationList(
+	IMapDataSourceList      dataSourceList,
+	IMapDataDestinationList dataDestinationList,
+	<span style="color: #0000ff">params</span> <span style="color: #2b91af">object</span>[]         parameters)
+</pre></div>
+<p>Последний метод отличается от двух первых – он отображает списки объектов.</p>
+<p>И как всегда, подробнее о параметрах:</p>
+<ul>
+<li>source – источник, наследник IMapDataSource – предоставляет методы для извлечения данных из источника.</li>
+<li>dest – получатель, наследник IMapDataDestination – предоставляет методы для записи данных.</li>
+<li>sourceObject – собственно объект, из которого происходит отображение.</li>
+<li>destObject – объект в который происходит отображение.</li>
+<li>parameters – набор параметров передаваемый в конструктор объекта получателя через экземпляр InitContext.</li>
+<li>dataSourceList и dataDestinationList – то же, что и source и dest, только для списков.</li>
+</ul>
+<p>Разберем пример отображения DataReader на Person:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> Person MapDataReaderToPerson(IDataReader reader, Person p)
+{
+	MappingSchema schema     = <span style="color: #0000ff">new</span> MappingSchema();
+
+	IMapDataSource source    = schema.CreateDataReaderMapper(reader);
+	IMapDataDestination dest = schema.GetObjectMapper       (p.GetType());
+
+	Schema.MapDataReaderToObject(source, reader, dest, p);
+	
+	<span style="color: #0000ff">return</span> p;
+}
+</pre></div>
+<p>Вот, примерно так оно и происходит.</p>
+<p>Теперь давайте подробней рассмотрим IDataSource и IDataDestination. Данные интерфейсы описывают методы, которые предоставляют возможности чтенья из источника и записи в получателя. </p>
+<p>Вкратце рассмотрим данные интерфейсы:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">interface</span> IMapDataSource
+{
+	<span style="color: #008000">// общее количество доступных для чтения полей</span>
+	<span style="color: #2b91af">int</span>      Count { <span style="color: #0000ff">get</span>; }
+
+	<span style="color: #008000">// тип поля по индексу</span>
+	Type     GetFieldType (<span style="color: #2b91af">int</span> index);
+	<span style="color: #008000">// имя поля по индексу</span>
+	<span style="color: #2b91af">string</span>   GetName      (<span style="color: #2b91af">int</span> index);
+	<span style="color: #008000">// получает индекс поля по имени</span>
+	<span style="color: #2b91af">int</span>      GetOrdinal   (<span style="color: #2b91af">string</span> name);
+	<span style="color: #008000">// получить значение из объекта по заданному индексу</span>
+	<span style="color: #2b91af">object</span>   GetValue     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index);
+	<span style="color: #008000">// получить значение из объекта по заданному имени</span>
+	<span style="color: #2b91af">object</span>   GetValue     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">string</span> name);
+
+	<span style="color: #008000">// поле по заданному индексу IsNull</span>
+	<span style="color: #2b91af">bool</span>     IsNull       (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index);
+
+	<span style="color: #008000">// поддерживает типизированные значения для поля по индексу</span>
+	<span style="color: #2b91af">bool</span>     SupportsTypedValues(<span style="color: #2b91af">int</span> index);
+
+	<span style="color: #008000">// получить типизированное значение по заданному индексу</span>
+	SByte    GetSByte     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index);
+	Int16    GetInt16     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index);
+	<span style="color: #008000">// и так далее</span>
+	<span style="color: #008000">// XXX GetXXX (object o, int index);</span>
+}
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">interface</span> IMapDataDestination
+{
+	<span style="color: #008000">// тип поля по индексу</span>
+	Type GetFieldType (<span style="color: #2b91af">int</span> index);
+	<span style="color: #008000">// получает индекс поля по имени</span>
+	<span style="color: #2b91af">int</span>  GetOrdinal   (<span style="color: #2b91af">string</span> name);
+	<span style="color: #008000">// устанавливает значение value в объекте о по индексу</span>
+	<span style="color: #0000ff">void</span> SetValue     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index,   <span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>);
+	<span style="color: #008000">// устанавливает значение value в объекте о по имени</span>
+	<span style="color: #0000ff">void</span> SetValue     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">string</span> name, <span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>);
+
+	<span style="color: #008000">// устанавливает значение null в объекте по индексу</span>
+	<span style="color: #0000ff">void</span> SetNull      (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index);
+
+	<span style="color: #008000">// поддерживает типизированные значения для поля по индексу</span>
+	<span style="color: #2b91af">bool</span> SupportsTypedValues(<span style="color: #2b91af">int</span> index);
+
+	<span style="color: #008000">// устанавливают типизированное значение value в объекте о по byltrce</span>
+	<span style="color: #0000ff">void</span> SetSByte     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index, SByte    <span style="color: #0000ff">value</span>);
+	<span style="color: #0000ff">void</span> SetInt16     (<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">int</span> index, Int16    <span style="color: #0000ff">value</span>);
+	<span style="color: #008000">// и так далее</span>
+	<span style="color: #008000">// SetXXX(object o, int index, XXX value);</span>
+}
+</pre></div>
+<p>Про поддержку типизированных значений стоит написать отдельно, и не своими словами:</p>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+В интерфейсах IMapDataSource и IMapDataDestination есть методы типа 
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Int32    GetInt32     (object o, int index);
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Означающие "возьмите у объекта o поле за номером index и верните его как int".
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Смысл в том, что если у нас есть миллион объектов с двумя полями типа int, то при мапинге через GetValue/SetValue половина работы уходит на boxing/unboxing.
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Т.е. CLR на полном серьёзе выделяет в куче 2 миллиона маленьких объектов, оборачивает в них наши числа и потом как-нибудь эти 2 миллиона объектов высвобождает.
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Получаем на ровном месте фрагментацию памяти и лишние вызовы сборщика мусора.
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+При мапинге через TypedValues boxing'а не происходит. GetInt32 вычитывает целое число и сохраняет его в регистр EAX.
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+SetInt32 берёт из EAX и выставляет нашему полю это значение. Если поле имеет тип, например, Int64, то код будет более мудрёным:
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+destMapper.SetInt64(destObj,dstIndex,Converter.ConvertInt32ToInt64(srcMapper.GetInt32(srcObj, srcIndex));
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Опять-таки никакого выделения/освобождения памяти.
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Так вот, SupportsTypedValues как раз и сообщает маперу, что источник/получатель умеет работать с числами, датами и т.п. без boxing'а.
+</blockquote>
+<blockquote style="background-color: #F5F9FF; color: #506580;">
+Оригинал by <a href="http://rsdn.ru/Users/507.aspx">Павел Блудов</a> – <a href="http://rsdn.ru/forum/message/2999766.1.aspx">здесь</a>.
+</blockquote>
+<p>Дополню, что SupportsValueTypes работает в паре с GetFieldType, который должен сообщить правильный тип поля.</p>
+<p>Для отображения списков (коллекции, таблицы и т.п.) существуют еще два дополнительных интерфейса:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">interface</span> IMapDataSourceList
+{
+	<span style="color: #0000ff">void</span> InitMapping      (InitContext initContext);
+	<span style="color: #2b91af">bool</span> SetNextDataSource(InitContext initContext);
+	<span style="color: #0000ff">void</span> EndMapping       (InitContext initContext);
+}
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">interface</span> IMapDataDestinationList
+{
+	<span style="color: #0000ff">void</span>                InitMapping       (InitContext initContext);
+	IMapDataDestination GetDataDestination(InitContext initContext);
+	<span style="color: #2b91af">object</span>              GetNextObject     (InitContext initContext);
+	<span style="color: #0000ff">void</span>                EndMapping        (InitContext initContext);
+}
+</pre></div>
+<p>InitMapping и EndMapping – инициализация и окончание отображения. В остальном, все сводится к тому, что при маппинге списков производится поочередное отображение каждого их элемента. </p>
+<p>Рассмотренные интерфейсы позволяют описать некий источник или получатель данных, и, при необходимости, вы легко можете расширить систему отображения необходимыми вам источниками и получателями.</p>
+<p><span id="mappingmapper"></span></p>
+<h4>MemberMapper</h4>
+<p>Теперь вы получили представление о том, как работает отображение объектов. Но это еще не все. Кроме представлений объектов, есть еще представления полей. Для этого используются <em>ValueMapper</em> и <em>MemberMapper</em>. Первый используется для отображения скалярных полей, второй – всех прочих. Механизм <em>ValueMapper</em> инкапсулирован в BLT, поэтому рассматривать мы его не будем. А вот <em>MemberMapper</em> мы рассмотрим более подробно.</p>
+<p><em>MemberMapper</em> позволяет вам… ну тут проще показать. Приведу простой пример: допустим, у некоторого объекта есть свойство со словарем строк. При сохранении данного объекта необходимо так же сохранить и словарь. </p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">SimpleDictionaryMapper</span> : MemberMapper
+{
+	<span style="color: #0000ff">public</span> <span style="color: #0000ff">override</span> <span style="color: #2b91af">object</span> GetValue(<span style="color: #2b91af">object</span> o)
+	{
+		Dictionary&lt;<span style="color: #2b91af">string</span>, <span style="color: #2b91af">string</span>&gt; dic = <span style="color: #0000ff">base</span>.GetValue(o) <span style="color: #0000ff">as</span> Dictionary&lt;<span style="color: #2b91af">string</span>, <span style="color: #2b91af">string</span>&gt;;
+		
+		<span style="color: #0000ff">if</span> (dic == <span style="color: #0000ff">null</span>) <span style="color: #0000ff">return</span> <span style="color: #0000ff">null</span>;
+
+		StringBuilder sb = <span style="color: #0000ff">new</span> StringBuilder();
+		<span style="color: #0000ff">foreach</span> (<span style="color: #2b91af">string</span> key <span style="color: #0000ff">in</span> dic.Keys)
+			sb.AppendFormat(<span style="color: #a31515">&quot;{0}={1};&quot;</span>, key, dic[key]);
+
+		<span style="color: #0000ff">return</span> sb.ToString();
+
+	}
+
+	<span style="color: #0000ff">public</span> <span style="color: #0000ff">override</span> <span style="color: #0000ff">void</span> SetValue(<span style="color: #2b91af">object</span> o, <span style="color: #2b91af">object</span> <span style="color: #0000ff">value</span>)
+	{
+		<span style="color: #2b91af">string</span> s = MappingSchema.ConvertToString(<span style="color: #0000ff">value</span>);
+		
+		<span style="color: #0000ff">if</span> (s == <span style="color: #2b91af">string</span>.Empty) <span style="color: #0000ff">base</span>.SetValue(o, <span style="color: #0000ff">null</span>);
+		
+		Dictionary&lt;<span style="color: #2b91af">string</span>, <span style="color: #2b91af">string</span>&gt; dic = <span style="color: #0000ff">new</span> Dictionary&lt;<span style="color: #2b91af">string</span>, <span style="color: #2b91af">string</span>&gt;();
+
+		<span style="color: #0000ff">foreach</span> (<span style="color: #2b91af">string</span> pair <span style="color: #0000ff">in</span> s.Split(<span style="color: #a31515">&#39;;&#39;</span>))
+		{
+			<span style="color: #0000ff">if</span> (pair.Length &lt; 3) <span style="color: #0000ff">continue</span>;
+
+			<span style="color: #2b91af">string</span>[] keyValue = pair.Split(<span style="color: #a31515">&#39;=&#39;</span>);
+
+			<span style="color: #0000ff">if</span> (keyValue.Length != 2) <span style="color: #0000ff">continue</span>;
+
+			dic.Add(keyValue[0], keyValue[1]);
+		}
+
+		<span style="color: #0000ff">base</span>.SetValue(o, dic);
+	}
+}
+</pre></div>
+<p>Приведенный пример отображает словарь на строку в заданном формате (<em>GetValue</em>) при обратном отображении (<em>SetValue</em>) данная строка разбирается и из нее заново собирается словарь.</p>
+<p>Используется <em>MemberMapper</em> следующим образом:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">TestObject</span>
+{
+	[MemberMapper(typeof(SimpleDictionaryMapper)]
+	<span style="color: #0000ff">public</span> Dictionary&lt;<span style="color: #2b91af">string</span>, <span style="color: #2b91af">string</span>&gt; Dictionary;
+}
+</pre></div>
+<p><span id="metadata"></span></p>
+<h3>Метаданные</h3>
+<p>К счастью ли, к печали, но в BLT нет телепатического модуля. Вместо него выступают метаданные, позволяющее декларативно рассказать BLT, как правильно выполнять отображение.</p>
+<p>Метаданные задаются двумя способами:</p>
+<ol>
+<li>Атрибутами.</li>
+<li>XML расширениями.</li>
+</ol>
+<p>Первый механизм является статическим, второй позволяет менять правила игры в динамике.</p>
+<p><span id="attributes"></span></p>
+<h4>Атрибуты</h4>
+<p><strong>MapFieldAttribute</strong> – позволяет изменять алиасы полей, участвующих в маппинге. Мы уже использовали данный атрибут, для изменения алиаса поля ID класса Person. Но у данного атрибута есть еще некоторые применения:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000">// Задает алиас полю Field1.</span>
+<span style="color: #008000">// Данный подход можно использовать для «переименования» унаследованных полей.</span>
+[MapField(&quot;MapName&quot;, &quot;Field1&quot;)]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Object1</span>
+{
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> Field1;
+	[MapField(&quot;intfld&quot;)]
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span> Field2;
+}
+
+[MapValue(true,  &quot;Y&quot;)]
+[MapValue(false, &quot;N&quot;)]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Object2</span>
+{
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">bool</span> Field1;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>  Field2;
+}
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Object3</span>
+{
+	<span style="color: #0000ff">public</span> Object2 Object2 = <span style="color: #0000ff">new</span> Object2();
+	<span style="color: #0000ff">public</span> Object4 Object4;
+}
+
+<span style="color: #008000">//При необходимости пожно задать алиасы для полей вложенных объектов.</span>
+[MapField(&quot;fld1&quot;, &quot;Object3.Object2.Field1&quot;)]
+[MapField(&quot;fld2&quot;, &quot;Object3.Object4.Str1&quot;)]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Object4</span>
+{
+	<span style="color: #0000ff">public</span> Object3 Object3 = <span style="color: #0000ff">new</span> Object3();
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span>  Str1;
+	<span style="color: #008000">// Простой способ для отображения вложенных объектов и их полей – </span>
+	<span style="color: #008000">// задать формат алиаса.</span>
+	[MapField(Format=&quot;InnerObject_{0}&quot;]
+	<span style="color: #0000ff">public</span> Object2 InnerObject = <span style="color: #0000ff">new</span> Object2();
+}
+</pre></div>
+<p><strong>MapValueAttribute</strong> – позволяет задать для значений их синонимы. Мы уже сталкивались с данным атрибутом, при отображении перечислений, но этим его возможности не заканчиваются, приведу еще один пример:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Object1</span>
+{
+	[MapValue(true,  &quot;Y&quot;)]
+	[MapValue(false, &quot;N&quot;)]
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">bool</span> Bool1;
+
+	[MapValue(true,  &quot;Y&quot;, &quot;Yes&quot;)]
+	[MapValue(false, &quot;N&quot;, &quot;No&quot;)]
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">bool</span> Bool2;
+}
+</pre></div>
+<p>Использовать атрибут можно так же и на весь класс, задавая таким образом синонимы по умолчанию для полей данного типа:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[MapValue(true,  &quot;Y&quot;)]
+[MapValue(false, &quot;N&quot;)]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Object2</span>
+{
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">bool</span> Bool1;
+
+	[MapValue(true,  &quot;Y&quot;, &quot;Yes&quot;)]
+	[MapValue(false, &quot;N&quot;, &quot;No&quot;)]
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">bool</span> Bool2;
+}
+</pre></div>
+<p><strong>MapIgnoreAttribute</strong> – поле, помеченное данным атрибутом будет проигнорировано при отображении.</p>
+<p><strong>MemberMapperAttribute</strong> – позволяет задать для поля специфический <em>MemberMapper</em>, пример использования был выше.</p>
+<p><strong>NullableAttribute</strong> – позволяет указать системе, что значение данного поля может принимать null. </p>
+<p><span id="xml"></span></p>
+<h4>XML</h4>
+<p><span id="dataaccess"></span></p>
+<h2>DataAccess</h2>
+<p>Пространство имен BLToolkit.DataAccess содержит набор классов, позволяющих легко разделить слой модели домена со слоем доступа к данным, с одной стороны, и «автоматизировать» труд программиста с другой. </p>
+<p>Вкратце:</p>
+<ul>
+<li>DataAccessor – используется для динамической генерации классов, осуществляющих доступ к данным и отображение данных на объекты и наоборот.</li>
+<li>SqlQuery – используется так же для доступа к данным и отображения, отличие от первого в том, что в данном случае динамически генерируются SQL запросы к БД.</li>
+</ul>
+<p>В обоих случаях в конечном итоге используется класс <strong>DbManager</strong>, ввиду чего я не буду приводить подробные описания методов и их параметров.</p>
+<p>Общие правила использования:</p>
+<ul>
+<li>Если в конструкторе (методе CreateInstance) аксесссору в качестве параметра передается экземпляр <em>DbManager</em>, то все обращения к базе производятся через данный объект. То же справдедливо и для методов. За DbManager.Dispose() в этом случае отвечает вызывающий. Иными словами передавая аксессору <em>DbManager</em> вы можете выполнить несколько действий в одном соединении.</li>
+<li>Если ни в конструкторе, ни в методе в качестве параметра не передан экземпляр <em>DbManager</em>, то в методе будет создан и уничтожен свой экзкмпляр. Иными словами - каждый метод будет открывать и закрывать соединение с БД. </li>
+</ul>
+<p><span id="sqlquery"></span></p>
+<h3>SqlQuery</h3>
+<p>Как было сказано выше класс <strong>SqlQuery</strong> автоматически (на основе метаданных) генерирует SQL запросы, а именно: вставка (Insert) удаление (Delete, DeleteByKey), обновление (Update), выборка (Select, SelectByKey).</p>
+<p>Как было сказано, для генерации запросов используются метаданные. «Расширить» метаданные можно как при помощи XML-расширений, так и атрибутами.</p>
+<p>Рассмотрим используемые атрибуты:</p>
+<p><strong>TableNameAttribute</strong> – указывает имя таблицы для бизнес объекта (по умолчанию имя таблицы совпадает с именем класса).</p>
+<p><strong>MapFieldAttribute</strong> – позволяет изменять алиасы полей, участвующих в маппинге.</p>
+<p><strong>PrimaryKeyAttribute</strong> – указывает на то что данное поле используется в качестве первичного ключа в таблице. Т.е. данные поля будут использованы в условии WHERE для выборки, удаления либо обновления. Атрибут может быть задан для нескольких полей.</p>
+<p><strong>NonUpdatableAttribute</strong> – поле не будет обновлено в инструкции Update.</p>
+<p><strong>SqlIgnoreAttribute</strong> - позволяет явно указать использовать ли данное поля при генерации SQL запросов. </p>
+<p>Рассмотрим пример использования (в примере я использую типизированную версию <strong>SqlQuery</strong> – <strong>SqlQuery&lt; T &gt;</strong>, просто лень писать приведение типов):</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">enum</span> Gender
+{
+	[MapValue(&quot;F&quot;)] Female,
+	[MapValue(&quot;M&quot;)] Male,
+	[MapValue(&quot;U&quot;)] Unknown,
+	[MapValue(&quot;O&quot;)] Other
+}
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Person</span>
+{
+	[MapField(&quot;PersonID&quot;), NonUpdatable, PrimaryKey]
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    ID;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> FirstName;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> MiddleName;
+	<span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> LastName;
+	<span style="color: #0000ff">public</span> Gender Gender;
+}
+
+[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> SqlQueryTest()
+{
+    SqlQuery&lt;Person&gt; da = <span style="color: #0000ff">new</span> SqlQuery&lt;Person&gt;();
+    
+    Person p1 = da.SelectByKey(1);
+    
+    Assert.IsNotNull(p1);
+    Assert.AreEqual(1,           p1.ID);
+    Assert.AreEqual(<span style="color: #a31515">&quot;John&quot;</span>,      p1.FirstName);
+    Assert.AreEqual(Gender.Male, p1.Gender);
+
+    p1.ID        = 101;
+    p1.FirstName = <span style="color: #a31515">&quot;John II&quot;</span>;
+    
+    <span style="color: #2b91af">int</span> r = da.Update(p1);
+
+    Assert.AreEqual(1, r);
+
+    Person p2 = da.SelectByKey(1);
+
+    Assert.IsNotNull(p2);
+    Assert.AreEqual(1,           p2.ID);
+    Assert.AreEqual(<span style="color: #a31515">&quot;John II&quot;</span>,   p2.FirstName);
+    Assert.AreEqual(Gender.Male, p2.Gender);
+
+    da.Delete(p1); <span style="color: #008000">// da.DeleteByKey(1);</span>
+    
+    p2 = da.SelectByKey(p1);
+
+    Assert.IsNull(p2);
+
+    List&lt;Person&gt; persons = da.SelectAll();
+
+    Assert.IsNotNull(persons);
+}
+</pre></div>
+<p>В ходе данного теста были сгенерированы и выполнены следующие запросы:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008000">-- SelectByKey</span>
+<span style="color: #0000ff">SELECT</span>
+	[PersonId],
+	[FirstName],
+	[MiddleName],
+	[LastName],
+	[Gender]
+<span style="color: #0000ff">FROM</span> [Person]
+<span style="color: #0000ff">WHERE</span> [PersonId] = @PersonId_W 
+
+<span style="color: #008000">-- Update</span>
+<span style="color: #0000ff">UPDATE</span> [Person] 
+<span style="color: #0000ff">SET</span>
+	[FirstName] = @FirstName,
+	[MiddleName] = @MiddleName,
+	[LastName] = @LastName,
+	[Gender] = @Gender
+<span style="color: #0000ff">WHERE</span> [PersonId] = @PersonId_W 
+
+<span style="color: #008000">-- Delete, DeleteByKey</span>
+<span style="color: #0000ff">DELETE</span> <span style="color: #0000ff">FROM</span> [Person]
+<span style="color: #0000ff">WHERE</span> [PersonId] = @PersonId_W 
+
+<span style="color: #008000">-- SelectAll</span>
+<span style="color: #0000ff">SELECT</span>
+	[PersonId],
+	[FirstName],
+	[MiddleName],
+	[LastName],
+	[Gender]
+<span style="color: #0000ff">FROM</span> [Person]
+</pre></div>
+<p>Как вы видите в коде запросов используются символы экранирования и имена параметров специфичные для MS SQL Server, поэтому следует оговориться, что в генерации запросов участвует <em>DataProvider</em>, а если быть точным то его метод <em>Convert(...)</em>, именно через него код запроса «наделяется» спецификой конкретного сервера. Если бы запрос генерировался с использованием <em>OdpDataProvider</em> то он бы выглядел примерно так:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">SELECT</span>
+	PersonId,
+	FirstName,
+	MiddleName,
+	LastName,
+	Gender
+<span style="color: #0000ff">FROM</span> Person
+<span style="color: #0000ff">WHERE</span> PersonId = :PersonId_W 
+</pre></div>
+<p>А для <em>FdpDataProvider</em> так:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">SELECT</span>
+	<span style="color: #a31515">&quot;PersonId&quot;</span>,
+	<span style="color: #a31515">&quot;FirstName&quot;</span>,
+	<span style="color: #a31515">&quot;MiddleName&quot;</span>,
+	<span style="color: #a31515">&quot;LastName&quot;</span>,
+	<span style="color: #a31515">&quot;Gender&quot;</span>
+<span style="color: #0000ff">FROM</span> <span style="color: #a31515">&quot;Person&quot;</span>
+<span style="color: #0000ff">WHERE</span> <span style="color: #a31515">&quot;PersonId&quot;</span> = @PersonId_W 
+</pre></div>
+<p>Так же следует отметить, что генерация запроса происходит только при первом обращении, после чего запрос кэшируется и при следующих обращениях возвращается из кэша.</p>
+<p><span id="dataaccessor"></span></p>
+<h3>DataAcessor</h3>
+<p>В отличие от <em>SqlQuery</em>, используемого для генерации SQL запросов, <em>DataAccessor</em> используется для эмита кода, что избавляет программиста от нудных и рутинных операций. Для начала рассмотрим небольшой пример: </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">namespace</span> DataAccessorTest
+{
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">enum</span> Gender
+    {
+                [MapValue(&quot;F&quot;)] Female,
+                [MapValue(&quot;M&quot;)] Male,
+                [MapValue(&quot;U&quot;)] Unknown,
+                [MapValue(&quot;O&quot;)] Other
+    }
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Person</span>
+    {
+                [MapField(&quot;PersonID&quot;)]
+                <span style="color: #0000ff">public</span> <span style="color: #2b91af">int</span>    ID;
+                <span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> FirstName;
+                <span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> MiddleName;
+                <span style="color: #0000ff">public</span> <span style="color: #2b91af">string</span> LastName;
+                <span style="color: #0000ff">public</span> Gender Gender;
+    } 
+
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor&lt;Person, PersonAccessor&gt;
+    {
+         [SqlQuery(@&quot;
+               SELECT 
+                   p.PersonId,
+                   p.FirstName,
+                   p.SecondName,
+                   p.MiddleName,
+                   p.Gender
+               FROM Person p
+               WHERE p.PersonId = @PersonId&quot;)]
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Person GetPerson(<span style="color: #2b91af">int</span> personId);
+    }
+
+    [Test]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> Test()
+    {
+        PersonAccessor pa = PersonAccessor.CreateInstance();
+
+        Person p = pa.GetPerson(1);
+
+        Assert.IsNotNull(p);
+        Assert.AreEqual(<span style="color: #a31515">&quot;John&quot;</span>, p.FirstName);
+    }
+}
+</pre></div>
+<p>Как видно, класс PersonAccessor – абстрактный, абстрактным так же является его метод GetPerson. При обращении к PersonAccessor.CreateInstance() BLToolkit эмитит сборку, где определяет наследника от PersonAccessor и реализует абстрактные методы, ссылку на экземпляр этого наследника и возвращает CreateInstance(). Если посмотреть на реализацию этого класса (допустим, при помощи  Reflector), то мы увидим примерно следующее:</p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[BLToolkitGenerated]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessorTest.PersonAccessor
+{
+    DataAccessorTest.Person person = <span style="color: #0000ff">null</span>;
+    DbManager dbManager = <span style="color: #0000ff">this</span>.GetDbManager();
+    <span style="color: #0000ff">try</span>
+    {
+        Type type = <span style="color: #0000ff">typeof</span>(DataAccessorTest.Person);
+        IDbDataParameter[] parameters = <span style="color: #0000ff">new</span> IDbDataParameter[] 
+            { 
+                dbManager.Parameter(
+                    <span style="color: #0000ff">this</span>.GetQueryParameterName(dbManager, <span style="color: #a31515">&quot;personId&quot;</span>), 
+                    personId) };
+
+        person = (DataAccessorTest.Person) dbManager
+            .SetCommand(<span style="color: #a31515">&quot;SELECT p.PersonId, p.FirstName, p.SecondName, p.MiddleName, p.Gender FROM Person WHERE p.PersonId = @PersonId&quot;</span>, <span style="color: #0000ff">this</span>.PrepareParameters(dbManager, parameters))
+            .ExecuteObject(type);
+    }
+    <span style="color: #0000ff">finally</span>
+    {
+        <span style="color: #0000ff">this</span>.Dispose(dbManager);
+    }
+    <span style="color: #0000ff">return</span> person;
+}
+</pre></div>
+<p>Если не вдаваться в детали, то BLToolkit за нас написал примерно следующее: </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+{
+    <span style="color: #0000ff">return</span> db
+        .SetCommand<span style="color: #a31515">@&quot;</span>
+<span style="color: #a31515">                     SELECT </span>
+<span style="color: #a31515">                         p.PersonId,</span>
+<span style="color: #a31515">                         p.FirstName,</span>
+<span style="color: #a31515">                         p.SecondName,</span>
+<span style="color: #a31515">                         p.MiddleName,</span>
+<span style="color: #a31515">                         p.Gender</span>
+<span style="color: #a31515">                     FROM Person p</span>
+<span style="color: #a31515">                     WHERE p.PersonId = @PersonId&quot;</span>,
+            db.Parameter(<span style="color: #a31515">&quot;@PersonId&quot;</span>, personId)
+        .ExecuteObject(<span style="color: #0000ff">typeof</span>(Person));
+}
+</pre></div>
+<p>Иными словами, при помощи DataAccessor можно задекларировать какой код нам нужен для работы с данными, и по этой декларации BLToolkit сгенерирует за программиста этот код. Декларация происходит методом объявления наследника от DataAccessor и объявления в нем методов, каждая часть объявления метода имеет свое значение, а именно: </p>
+<ul>
+<li>Возвращаемое значение.</li>
+<li>Имя метода.</li>
+<li>Параметры.</li>
+<li>Атрибуты, примененные к методу и его параметрам. </li>
+</ul>
+<p><span id="dataaccessorreturntype"></span></p>
+<h4>Возвращаемое значение</h4>
+<p>По типу возвращаемого значения определяется метод DbManager, который следует вызвать: </p>
+<table border="1" cellspacing="0" cellpadding="2">
+	<thead>
+		<tr>
+			<th>Тип</th>
+			<th>Метод</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>IDataReader</td>
+			<td>ExecuteDataReader</td>
+		</tr>
+		<tr>
+			<td>Наследник от DataSet</td>
+			<td> ExecuteDataSet </td>
+		</tr>
+		<tr>
+			<td>Наследник от DataTable</td>
+			<td>ExecuteDataTable</td>
+		</tr>
+		<tr>
+			<td>Наследник от IList</td>
+			<td>ExecuteList или ExecuteScalarList</td>
+		</tr>
+		<tr>
+			<td>Наследник от IDictionary</td>
+			<td>ExecuteDictionary или ExecuteScalarDictionary</td>
+		</tr>
+		<tr>
+			<td>void</td>
+			<td>ExecuteNonQuery</td>
+		</tr>
+		<tr>
+			<td>ValueType (int, string, byte[])</td>
+			<td>ExecuteScalar</td>
+		</tr>
+		<tr>
+			<td>Иное</td>
+			<td>ExecuteObject</td>
+		</tr>
+	</tbody>
+</table>
+<p><span id="dataaccessormethodname"></span></p>
+<h4>Имя метода</h4>
+<p>По умолчанию DataAccessor использует хранимые процедуры. По имени метода определяется имя хранимой процедуры. Нотация следующая: [Имя типа]_[Имя Процедуры] </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> List&lt;Person&gt; SelectAll() <span style="color: #008000">// вызовет Person_SelectAll</span>
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">void</span> Insert(Person p) <span style="color: #008000">// вызовет Person_Insert</span>
+</pre></div>
+<p>Переопределить подобное поведение можно написав своего наследника от DataAccessor и перегрузив в нем метод <em>GetDefaultSpName</em>.</p>
+<p><span id="dataaccessorparams"></span></p>
+<h4>Параметры</h4>
+<p>Параметры используются как параметры запросов. Для параметра запроса используется имя параметра функции. Переопределить данное поведение можно, перегрузив функции GetQueryParameterName и/или GetSpParameterName. </p>
+<p>Если в качестве параметра передан не примитивный тип, то параметры из него будут созданы при помощи метода DbManager.CreateParameters(…). </p>
+<p>Если в качестве параметра будет передан экземпляр DbManager, то он будет использован для выполнения запроса. </p>
+<p><span id="dataaccessorattributes"></span></p>
+<h4>Атрибуты</h4>
+<p>Мощный механизм, позволяющий изменить поведение по умолчанию и сообщить генератору дополнительную информацию, в соответствии с которой будет изменен генерируемый код. </p>
+<p><strong>ActionNameAttribute</strong> – позволяет задать имя действия для хранимой процедуры.</p>
+<p><strong>ActionSprocNameAttribute</strong> – позволяет ассоциировать метод аксессора с хранимой процедурой.</p>
+<p><strong>SprocNameAttribute</strong> – позволяет явно задать имя хранимой процедуры. </p>
+<p>Рассмотрим несколько примеров (все методы в результате вызывают хранимку Person_SelectAll): </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[SprocActionName(&quot;GetPersons&quot;, &quot;Person_SelectAll&quot;)]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor&lt;Person, PersonAccessor&gt;
+{
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> List&lt;Person&gt; SelectAll();
+    
+    [Action(&quot;SelectAll&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> List&lt;Person&gt; GetAll();
+
+    [SprocName(&quot;Person_SelectAll&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> List&lt;Person&gt; LoadPersons();
+
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> List&lt;Person&gt; GetPersons();
+}
+</pre></div>
+<p><strong>DiscoverParametersAttribute</strong> – при использовании хранимых процедур через DataAccessor по умолчанию полагается, что имена параметров функции совпадают с именем параметров хранимки, в таком случае порядок параметров в функции не имеет значения. Если же к функции применен данный атрибут BLToolkit получит информацию о параметрах хранимой процедуры и применит ее к параметрам метода по порядку, в данном случае имена параметров будут проигнорированы. </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">[TestFixture]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">DiscoverParameters</span>
+{
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor
+    {
+        [DiscoverParameters]
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Person SelectByName(<span style="color: #2b91af">string</span> anyParameterName, <span style="color: #2b91af">string</span> rParameterName);
+    }
+
+    [Test]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> Test()
+    {
+        PersonAccessor pa = DataAccessor.CreateInstance&lt;PersonAccessor&gt;();
+        Person         p  = pa.SelectByName(<span style="color: #a31515">&quot;Tester&quot;</span>, <span style="color: #a31515">&quot;Testerson&quot;</span>);
+
+        Assert.AreEqual(2, p.ID);
+    }
+}
+</pre></div>
+<p><strong>SqlQueryAttribute</strong> – говорит методу, что следует выполнить указанный SQL запрос. Выше уже приводился стандартный метод использования данного атрибута. Кроме того, у атрибута есть свойство IsDynamic?. Если данное свойство выставлено в true то для получения кода запроса используется метод атрибута GetSqlText?(…). </p>
+<p>Рассмотрим пример: </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">TestQueryAttribute</span> : SqlQueryAttribute
+{
+        <span style="color: #0000ff">public</span> TestQueryAttribute()
+        {
+                IsDynamic = <span style="color: #0000ff">true</span>;
+        }
+
+        <span style="color: #0000ff">private</span> <span style="color: #2b91af">string</span> _oracleText;
+        <span style="color: #0000ff">public</span>  <span style="color: #2b91af">string</span>  OracleText
+        {
+                <span style="color: #0000ff">get</span> { <span style="color: #0000ff">return</span> _oracleText;  }
+                <span style="color: #0000ff">set</span> { _oracleText = <span style="color: #0000ff">value</span>; }
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">override</span> <span style="color: #2b91af">string</span> GetSqlText(DataAccessor accessor, DbManager dbManager)
+        {
+                <span style="color: #0000ff">switch</span> (dbManager.DataProvider.Name)
+                {
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;Sql&quot;</span>   :
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;SqlCe&quot;</span> : <span style="color: #0000ff">return</span> SqlText;
+
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;Oracle&quot;</span>:
+                        <span style="color: #0000ff">case</span> <span style="color: #a31515">&quot;ODP&quot;</span>   : <span style="color: #0000ff">return</span> OracleText ?? SqlText;
+                }
+
+                <span style="color: #0000ff">throw</span> <span style="color: #0000ff">new</span> ApplicationException(<span style="color: #2b91af">string</span>.Format(<span style="color: #a31515">&quot;Unknown data ider &#39;{0}&#39;&quot;</span>, dbManager.DataProvider.Name));
+        }
+}
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor&lt;Person, Person&gt;
+{
+        [TestQuery(
+                SqlText    = &quot;SELECT * FROM Person WHERE LastName = @lastName&quot;,
+                OracleText = &quot;SELECT * FROM Person WHERE LastName = :lastName&quot;)]
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> List&lt;Person&gt; SelectByLastName(<span style="color: #2b91af">string</span> lastName);
+}
+</pre></div>
+<p>В данном примере, в зависимости от имени используемого DataProvider-а выполняются разные запросы. </p>
+<p><strong>FormatAttribute</strong> – применяется к параметру, указывает, что данный параметр используется для генерации текста SQL запроса или имени хранимой процедуры.</p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor
+{
+    [SqlQuery(&quot;SELECT TOP {0} * FROM Person&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> List&lt;Person&gt; GetPersonList([Format] <span style="color: #2b91af">int</span> top);
+}
+
+[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> Test()
+{
+    PersonAccessor pa   = DataAccessor.CreateInstance&lt;PersonAccessor&gt;();
+    List&lt;Person&gt;   list = pa.GetPersonList(2); <span style="color: #008000">// SELECT TOP 2 * FROM Person</span>
+
+    Assert.That(list,       Is.Not.Null);
+    Assert.That(list.Count, Is.LessThanOrEqualTo(2));
+}
+</pre></div>
+<p><strong>ParamNameAttribute</strong> – позволяет явно задать имя параметра.</p>
+<p><strong>ParamDbTypeAttribute</strong> – позволяет явно задать тип параметра.</p>
+<p><strong>ParamSizeAttribute</strong> – позволяет явно задать размер параметра.</p>
+<p><strong>ParamNullValueAttribute</strong> – позволяет указать какое значение параметра считать за NULL. </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">TestAccessor</span> : DataAccessor
+{
+
+    [SqlQuery(&quot;SELECT * FROM Person WHERE PersonID = @personId&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Person SelectByKey([ParamName(<span style="color: #a31515">&quot;personId&quot;</span>)]<span style="color: #2b91af">int</span> id);
+
+    <span style="color: #008000">// при id == 1 значение параметра будет заменено на NULL</span>
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Person SelectByKey([ParamNullValue(1)] <span style="color: #2b91af">int</span> id);
+
+    [SqlQuery(&quot;SELECT {0} = {1} FROM Person WHERE PersonID = 1&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">void</span> SelectJohn(
+        [ParamSize(50), ParamDbType(DbType.String)] <span style="color: #0000ff">out</span> <span style="color: #2b91af">string</span> name,
+        [Format] <span style="color: #2b91af">string</span> paramName,
+        [Format] <span style="color: #2b91af">string</span> fieldName); 
+}
+
+[Test]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> AccessorTest()
+{
+    <span style="color: #0000ff">using</span> (DbManager db = <span style="color: #0000ff">new</span> DbManager())
+    {
+        TestAccessor ta = DataAccessor.CreateInstance&lt;TestAccessor&gt;(db);
+
+        <span style="color: #2b91af">string</span> actualName;
+
+        <span style="color: #008000">// SELECT @name  = FirstName FROM Person WHERE PersonID = 1</span>
+        <span style="color: #008000">// полученое значение будет возвращено в параметр name</span>
+        ta.SelectJohn(<span style="color: #0000ff">out</span> actualName, <span style="color: #a31515">&quot;@name&quot;</span>, <span style="color: #a31515">&quot;FirstName&quot;</span>);
+
+        Assert.AreEqual(<span style="color: #a31515">&quot;John&quot;</span>, actualName);
+    }
+}
+</pre></div>
+<p><strong>DirectionAttribute</strong> – позволяет для параметра явно задать его направление.</p>
+<p><strong>DestinationAttribute</strong> – указывает, что в данный параметр следует отмапить выбранные значения. </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor&lt;Person, PersonAccessor&gt;
+{
+    [SqlQuery(&quot;SELECT * FROM Person&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">void</span> SelectAll([Destination]List&lt;Person&gt; list);
+    
+    <span style="color: #008000">// CREATE Procedure Person_Insert_OutputParameter</span>
+    <span style="color: #008000">//   @FirstName  nvarchar(50),</span>
+    <span style="color: #008000">//   @LastName   nvarchar(50),</span>
+    <span style="color: #008000">//   @MiddleName nvarchar(50),</span>
+    <span style="color: #008000">//   @Gender     char(1),</span>
+    <span style="color: #008000">//   @PersonID   int output</span>
+    <span style="color: #008000">//   AS </span>
+    <span style="color: #008000">//</span>
+    <span style="color: #008000">//     INSERT INTO Person</span>
+    <span style="color: #008000">//       ( LastName,  FirstName,  MiddleName,  Gender)</span>
+    <span style="color: #008000">//     VALUES</span>
+    <span style="color: #008000">//       (@LastName, @FirstName, @MiddleName, @Gender)</span>
+    <span style="color: #008000">//</span>
+    <span style="color: #008000">//     SET @PersonID = Cast(SCOPE_IDENTITY() as int)</span>
+    [SprocName(&quot;Person_Insert_OutputParameter&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">void</span> Insert([Direction.Output(<span style="color: #a31515">&quot;PersonId&quot;</span>)] Person p);
+}
+</pre></div>
+<p><strong>IndexAttribute</strong> – позволяет указать индекс для словаря (по умолчанию используется первичный ключ): </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor&lt;Person&gt;
+{
+    <span style="color: #008000">// Для ключа словаря будет использован первичный ключ объекта Person,</span>
+    <span style="color: #008000">// т.е. поля, помеченные атрибутом PrimaryKey</span>
+    [ActionName(&quot;SelectAll&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Dictionary&lt;<span style="color: #2b91af">int</span>,Person&gt; GetPersonDictionary1();
+
+    <span style="color: #008000">// Явно задаем индекс. ID – поле класса Person.</span>
+    <span style="color: #008000">//</span>
+    [ActionName(&quot;SelectAll&quot;)]
+    [Index(&quot;ID&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Dictionary&lt;<span style="color: #2b91af">int</span>,Person&gt; GetPersonDictionary2();
+
+    <span style="color: #008000">// Явно задаем индекс. </span>
+    <span style="color: #008000">// &quot;@PersonID&quot;- поле полученного в результате выборки кортежа!.</span>
+    <span style="color: #008000">// Важно: собачка - &#39;@&#39; заставляет BLToolkit для индекса </span>
+    <span style="color: #008000">// брать значения из полей кортежа!</span>
+    <span style="color: #008000">//</span>
+    [ActionName(&quot;SelectAll&quot;)]
+    [Index(&quot;@PersonID&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Dictionary&lt;<span style="color: #2b91af">int</span>,Person&gt; GetPersonDictionary3();
+
+    <span style="color: #008000">// Будет вычитан словарь со скалярнми величинами.</span>
+    <span style="color: #008000">//</span>
+    [SqlQuery(&quot;SELECT PersonID, FirstName FROM Person&quot;)]
+    [Index(&quot;PersonID&quot;)]
+    [ScalarFieldName(&quot;FirstName&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> Dictionary&lt;<span style="color: #2b91af">int</span>,<span style="color: #2b91af">string</span>&gt; GetPersonNameDictionary();
+}
+</pre></div>
+<p><strong>ObjectTypeAttribute</strong> – явно задает тип возвращаемого абстрактным методом объекта.</p>
+<p><strong>ActualTypeAttribute</strong> – явно задает тип возвращаемого абстрактным методом объекта, имеет более низкий приоритет чем ObjectType.</p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">interface</span> IName
+{
+    <span style="color: #2b91af">string</span> Name { <span style="color: #0000ff">get</span>; }
+}
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">NameBase</span> : IName
+{
+    <span style="color: #0000ff">private</span> <span style="color: #2b91af">string</span> _name;
+    <span style="color: #0000ff">public</span>  <span style="color: #2b91af">string</span>  Name { <span style="color: #0000ff">get</span> { <span style="color: #0000ff">return</span> _name; } <span style="color: #0000ff">set</span> { _name = <span style="color: #0000ff">value</span>; } }
+}
+
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Name1</span> : NameBase {}
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">Name2</span> : NameBase {}
+
+[ActualType(typeof(IName), typeof(Name1))]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">TestAccessor</span> : DataAccessor
+{
+    <span style="color: #008000">// Вернет объект класса Name1</span>
+    [SqlQuery(&quot;SELECT &#39;John&#39; as Name&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> IName GetName1();
+
+    <span style="color: #008000">// Вернет объект класса Name2</span>
+    [SqlQuery(&quot;SELECT &#39;John&#39; as Name&quot;), ObjectType(typeof(Name2))]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> IName GetName2();
+
+    [SqlQuery(&quot;SELECT &#39;John&#39; as Name&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> IList&lt;IName&gt; GetName1List();
+
+    [SqlQuery(&quot;SELECT &#39;John&#39; as Name&quot;), ObjectType(typeof(Name2))]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> IList&lt;IName&gt; GetName2List();
+
+    [SqlQuery(&quot;SELECT 1 as ID, &#39;John&#39; as Name&quot;), Index(&quot;@ID&quot;)]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> IDictionary&lt;<span style="color: #2b91af">int</span>, IName&gt; GetName1Dictionary();
+
+    [SqlQuery(&quot;SELECT 1 as ID, &#39;John&#39; as Name&quot;), Index(&quot;@ID&quot;),
+     ObjectType(typeof(Name2))]
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> IDictionary&lt;<span style="color: #2b91af">int</span>, IName&gt; GetName2Dictionary();
+}
+
+
+[ObjectType(typeof(Person)]
+<span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">PersonAccessor</span> : DataAccessor
+{
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> ArrayList SelectAll();
+
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #2b91af">object</span> SelectByKey(<span style="color: #2b91af">int</span> personId);
+}
+</pre></div>
+<p><span id="dataaccessrecommends"></span></p>
+<h3>Рекомендации по использванию</h3>
+<p><span id="dataaccessrecommendsmanual"></span></p>
+<h4>Реализация методов ручками</h4>
+<p>Эмит кода, это конечно хорошо, но переодически возникает необходимость сделать метод руками, в таком случае рекомендуется делать это так: </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">MyAccessor</span> : DataAccessor
+{
+    <span style="color: #0000ff">public</span> List&lt;Person&gt; SelectAll()
+    {
+        DbManager db = GetDbManager();
+        <span style="color: #0000ff">try</span>
+        {
+            <span style="color: #0000ff">return</span> SelectAll(db);
+        }
+        <span style="color: #0000ff">finally</span>
+        {
+            Dispose(db);
+        }
+    }
+
+    <span style="color: #0000ff">public</span> SelectAll(DbManager db)
+    {
+        <span style="color: #0000ff">return</span> db.SetCommand(<span style="color: #a31515">&quot;SELECT * FROM Person&quot;</span>).ExecuteList&lt;Person&gt;();
+    }
+}
+</pre></div>
+<p>Это типовой шаблон реализации методов как для всех наследников DataAccessorBase, коими являются как DataAccessor так и SqlQuery. Ключевыми являются использование функций GetDbManager() и Dispose(DbManager db). Первый возвращает эеземпляр DbManager, переданный в конструктор, если передавался, иначе новый экзкмпляр. Второй освобождает экземпляр DbManager, в случае если оный не был передан через конструктор. </p>
+<p><span id="dataaccessrecommendsabstract"></span></p>
+<h4>Генерация SQL запросов в абстрактном аксессоре</h4>
+<p>Абстрактные аксессоры не поддерживают генерацию SQL запросов, однако, при необходимости можно реализовать своего наследника, допустим, следующего вида: </p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">abstract</span> <span style="color: #0000ff">class</span> <span style="color: #2b91af">MyAccessorBase</span>&lt;T, TA&gt; : DataAccessor&lt;T, TA&gt; <span style="color: #0000ff">where</span> TA : DataAccessor&lt;T&gt;
+{
+        SqlQuery&lt;T&gt; _query = <span style="color: #0000ff">new</span> SqlQuery&lt;T&gt;();
+
+        <span style="color: #0000ff">private</span> <span style="color: #0000ff">delegate</span> R Func&lt;P1, P2, R&gt;(P1 par1, P2 par2);
+        <span style="color: #0000ff">private</span> <span style="color: #0000ff">delegate</span> R Func&lt;P1, R&gt;(P1 par1);
+
+        <span style="color: #0000ff">private</span> R Exec&lt;R, P&gt;(Func&lt;DbManager, P, R&gt; op, P obj)
+        {
+                DbManager db = GetDbManager();
+                <span style="color: #0000ff">try</span>
+                {
+                        <span style="color: #0000ff">return</span> op(db, obj);
+                }
+                <span style="color: #0000ff">finally</span>
+                {
+                        Dispose(db);
+                }
+        }
+
+        <span style="color: #0000ff">private</span> R Exec&lt;R&gt;(Func&lt;DbManager, R&gt; op)
+        {
+                DbManager db = GetDbManager();
+                <span style="color: #0000ff">try</span>
+                {
+                        <span style="color: #0000ff">return</span> op(db);
+                }
+                <span style="color: #0000ff">finally</span>
+                {
+                        Dispose(db);
+                }
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span>  Insert(T obj)
+        {
+                <span style="color: #0000ff">return</span> Exec&lt;<span style="color: #2b91af">int</span>, T&gt;(Insert, obj);
+        }
+                        
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span> Insert(DbManager db, T obj)
+        {
+                <span style="color: #0000ff">return</span> _query.Insert(db, obj);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span> Update(T obj)
+        {
+                <span style="color: #0000ff">return</span> Exec&lt;<span style="color: #2b91af">int</span>, T&gt;(Update, obj);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span> Update(DbManager db, T obj)
+        {
+                <span style="color: #0000ff">return</span> _query.Update(db, obj);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span> Delete(T obj)
+        {
+                <span style="color: #0000ff">return</span> Exec&lt;<span style="color: #2b91af">int</span>, T&gt;(Delete, obj);
+        }
+                        
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span> Delete(DbManager db, T obj)
+        {
+                <span style="color: #0000ff">return</span> _query.Delete(db, obj);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span> DeleteByKey(<span style="color: #2b91af">object</span>[] keys)
+        {
+                <span style="color: #0000ff">return</span> Exec&lt;<span style="color: #2b91af">int</span>, <span style="color: #2b91af">object</span>[]&gt;(DeleteByKey, keys);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> <span style="color: #2b91af">int</span> DeleteByKey(DbManager db, <span style="color: #2b91af">object</span>[] keys)
+        {
+                <span style="color: #0000ff">return</span> _query.DeleteByKey(db, keys);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> List&lt;T&gt; SelectAll()
+        {
+                <span style="color: #0000ff">return</span> Exec&lt;List&lt;T&gt;&gt;(SelectAll);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> List&lt;T&gt; SelectAll(DbManager db)
+        {
+                <span style="color: #0000ff">return</span> _query.SelectAll(db);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> T SelectByKey(<span style="color: #2b91af">object</span>[] keys)
+        {
+                <span style="color: #0000ff">return</span> Exec&lt;T, <span style="color: #2b91af">object</span>[]&gt;(SelectByKey, keys);
+        }
+
+        <span style="color: #0000ff">public</span> <span style="color: #0000ff">virtual</span> T SelectByKey(DbManager db, <span style="color: #2b91af">object</span>[] keys)
+        {
+                <span style="color: #0000ff">return</span> _query.SelectByKey(db, keys);
+        }
+}
+</pre></div>
+<h2>Исходники</h2>
+<p>Тут описание структуры исходников, что где и зачем.</p>
+<p><span id="materials"></span></p>
+<h2>При написании использовалось</h2>
+<ul>
+<li>Редактор markdown <a href="http://markdownpad.com/">MarkdownPad</a>.</li>
+<li>Подсветка синтаксиса <a href="http://hilite.me/">http://hilite.me/</a>.</li>
+<li>Кэш из вебархива (<a href="http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit">http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit</a>) оригинальной страницы <a href="http://projects.rsdn.ru/RFD/wiki/BLToolkit">http://projects.rsdn.ru/RFD/wiki/BLToolkit</a>.</li>
+<li>Оригинальная документация <a href="http://files.rsdn.ru/49168/BLToolkit.doc">http://files.rsdn.ru/49168/BLToolkit.doc</a> </li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
