@@ -1,3 +1,7 @@
+<style type="text/css">
+	pre { border: 0;}
+</style>
+
 # Business Logic Toolkit
 
 Основная задача статьи дать вводную информацию о библиотеке BLToolkit. Она поможет Вам сделать первый шаг в обуздании этого маленького монстра. Данная статья основана на оригинальной статье [Игоря Ткачева "Пространство имен Rsdn.Framework.Data"](http://rsdn.ru/article/files/libs/RsdnFrameworkData.xml) и, как следствие, содержит части оной.
