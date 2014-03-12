@@ -1557,11 +1557,9 @@ DbManager db = <span style="color: #0000ff">new</span> DbManager(<span style="co
 </pre></div>
 <blockquote style="background-color: #FFE4E4; color: #FF5555;">
 Как видно из примеров, в одном случае используется «@PersonId» а в другом «ID». Разница в следующем: если не указано '@', то значение берётся из поля уже смапленного объекта, если '@' присутствует, то из исходной записи.
-</blockquote>
-<blockquote style="background-color: #FFE4E4; color: #FF5555;">
+<br/><br/>
 Зачем это надо. Первый случай может пригодиться, если словарь строится по полю, которое явно не отображается на исходную запись. Например, какое-нибудь составное поле в объекте. Второй случай может понадобиться, когда нужно построить словарь по полю, которое есть в исходном рекордсете, но не отображается на объект. Если ключевое поле один в один отображается на объект, то разницы нет.
-</blockquote>
-<blockquote style="background-color: #FFE4E4; color: #FF5555;">
+<br/><br/>
 Оригинал by <a href="http://rsdn.ru/Users/1.aspx">Игорь Ткачев</a> – <a href="http://rsdn.ru/forum/message/3017055.1.aspx">здесь</a>.
 </blockquote>
 <p><span id="executeforeach"></span></p>
@@ -1736,11 +1734,9 @@ DbManager db = <span style="color: #0000ff">new</span> DbManager(<span style="co
 <p>Итак, <em>MappingSchema</em> содержит в себе весь необходимый для выполнения отображения контекст, а так же набор семейств функций по отображению ужей на ежей.  Более того, <em>MappingSchema</em> содержит так же правила преобразования (конвертации) данных из одного формата в другой (ну, например из <em>Int32</em> в <em>Boolean</em>, из <em>String</em> в <em>Boolean</em> и наоборот). Все это превращает <em>MappingSchema</em> в мощный инструмент по преобразованию и отображению данных.</p>
 <blockquote style="background-color: #F5F9FF; color: #506580;">
 Лирическое отступление на тему OdpDataProvider:
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Орлы из оракла не пользуются SqlString, SqlInt32 и т.п. типами, а напридумывали велосипедов. Поэтому приходится прилагать так много усилий, чтобы привести всякие OracleDecimal хотя бы к System.Decimal.
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Оригинал by <a href="http://www.rsdn.ru/Users/507.aspx">Павел Блудов</a> – <a href="http://www.rsdn.ru/forum/message/2479957.1.aspx">здесь</a>.
 </blockquote>
 <p><span id="mappingschema"></span></p>
@@ -1899,38 +1895,27 @@ ConvertToSqlInt32(<span style="color: #2b91af">object</span> <span style="color:
 <p>Про поддержку типизированных значений стоит написать отдельно, и не своими словами:</p>
 <blockquote style="background-color: #F5F9FF; color: #506580;">
 В интерфейсах IMapDataSource и IMapDataDestination есть методы типа 
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Int32    GetInt32     (object o, int index);
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Означающие "возьмите у объекта o поле за номером index и верните его как int".
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Смысл в том, что если у нас есть миллион объектов с двумя полями типа int, то при мапинге через GetValue/SetValue половина работы уходит на boxing/unboxing.
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Т.е. CLR на полном серьёзе выделяет в куче 2 миллиона маленьких объектов, оборачивает в них наши числа и потом как-нибудь эти 2 миллиона объектов высвобождает.
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Получаем на ровном месте фрагментацию памяти и лишние вызовы сборщика мусора.
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 При мапинге через TypedValues boxing'а не происходит. GetInt32 вычитывает целое число и сохраняет его в регистр EAX.
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 SetInt32 берёт из EAX и выставляет нашему полю это значение. Если поле имеет тип, например, Int64, то код будет более мудрёным:
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 destMapper.SetInt64(destObj,dstIndex,Converter.ConvertInt32ToInt64(srcMapper.GetInt32(srcObj, srcIndex));
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Опять-таки никакого выделения/освобождения памяти.
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Так вот, SupportsTypedValues как раз и сообщает маперу, что источник/получатель умеет работать с числами, датами и т.п. без boxing'а.
-</blockquote>
-<blockquote style="background-color: #F5F9FF; color: #506580;">
+<br/><br/>
 Оригинал by <a href="http://rsdn.ru/Users/507.aspx">Павел Блудов</a> – <a href="http://rsdn.ru/forum/message/2999766.1.aspx">здесь</a>.
 </blockquote>
 <p>Дополню, что SupportsValueTypes работает в паре с GetFieldType, который должен сообщить правильный тип поля.</p>
@@ -2742,7 +2727,8 @@ destMapper.SetInt64(destObj,dstIndex,Converter.ConvertInt32ToInt64(srcMapper.Get
 <li>Редактор markdown <a href="http://markdownpad.com/">MarkdownPad</a>.</li>
 <li>Подсветка синтаксиса <a href="http://hilite.me/">http://hilite.me/</a>.</li>
 <li>Кэш из вебархива (<a href="http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit">http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit</a>) оригинальной страницы <a href="http://projects.rsdn.ru/RFD/wiki/BLToolkit">http://projects.rsdn.ru/RFD/wiki/BLToolkit</a>.</li>
-<li>Оригинальная документация <a href="http://files.rsdn.ru/49168/BLToolkit.doc">http://files.rsdn.ru/49168/BLToolkit.doc</a> </li>
+<li>Оригинальная документация <a href="http://files.rsdn.ru/49168/BLToolkit.doc">http://files.rsdn.ru/49168/BLToolkit.doc</a>.</li>
+<li>Исходник этой статьи на markdown - <a href="http://liiws.bitbucket.org/bltoolkit.md">http://liiws.bitbucket.org/bltoolkit.md</a>.</li>
 </ul>
 
 </body>
