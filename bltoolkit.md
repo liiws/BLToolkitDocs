@@ -82,6 +82,8 @@
 <span style="color: #0000ff">ON</span> [<span style="color: #0000ff">PRIMARY</span>]
 </pre></div>
 
+Код:
+
 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">public</span> <span style="color: #0000ff">enum</span> Gender
 {
 	Female,
