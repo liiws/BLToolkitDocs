@@ -6,7 +6,7 @@
 
 
 
-## От [liiws](https://bitbucket.org/liiws)
+## От [liiws](https://github.com/liiws)
 
 Настоящая копипаста создана с целью сохранения оригинального текста, т.к. страница на [RSDN](http://projects.rsdn.ru/RFD/wiki/BLToolkit) умерла.
 
@@ -2782,5 +2782,5 @@ InitMapping и EndMapping – инициализация и окончание �
 - Подсветка синтаксиса [http://hilite.me/](http://hilite.me/).
 - Кэш из вебархива ([http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit](http://web.archive.org/web/20131106072643/http://projects.rsdn.ru/RFD/wiki/BLToolkit)) оригинальной страницы [http://projects.rsdn.ru/RFD/wiki/BLToolkit](http://projects.rsdn.ru/RFD/wiki/BLToolkit).
 - Оригинальная документация [http://files.rsdn.ru/49168/BLToolkit.doc](http://files.rsdn.ru/49168/BLToolkit.doc).
-- Исходник этой статьи на markdown - [http://liiws.bitbucket.org/bltoolkit.md](http://liiws.bitbucket.org/bltoolkit.md).
+- Исходник этой статьи на markdown - [https://raw.githubusercontent.com/liiws/BLToolkitDocs/master/bltoolkit.md](https://raw.githubusercontent.com/liiws/BLToolkitDocs/master/bltoolkit.md).
 
